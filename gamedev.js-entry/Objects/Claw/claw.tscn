@@ -132,9 +132,10 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="Claw" type="CharacterBody2D" unique_id=2134338924 node_paths=PackedStringArray("claw_sprite")]
+[node name="Claw" type="CharacterBody2D" unique_id=2134338924 node_paths=PackedStringArray("claw_sprite", "claw_grab_position_marker")]
 script = ExtResource("1_mys5a")
 claw_sprite = NodePath("ClawSprite")
+claw_grab_position_marker = NodePath("ClawGrabPosition")
 metadata/_custom_type_script = "uid://od32e1ijd6w1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1053839476]
@@ -142,10 +143,8 @@ shape = SubResource("RectangleShape2D_a7shj")
 disabled = true
 
 [node name="ClawArea" type="Area2D" parent="." unique_id=327584121]
-position = Vector2(-20, -19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClawArea" unique_id=1388975132]
-position = Vector2(20, 19)
 shape = SubResource("RectangleShape2D_kk55d")
 
 [node name="ClawSprite" type="AnimatedSprite2D" parent="." unique_id=1619901990]
@@ -154,4 +153,7 @@ animation = &"open"
 frame = 7
 frame_progress = 1.0
 
-[connection signal="area_entered" from="ClawArea" to="." method="grab"]
+[node name="ClawGrabPosition" type="Marker2D" parent="." unique_id=813410649]
+position = Vector2(0, 9)
+
+[connection signal="body_entered" from="ClawArea" to="." method="grab"]
