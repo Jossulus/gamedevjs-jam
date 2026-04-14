@@ -2,5 +2,33 @@
 
 [ext_resource type="Script" uid="uid://od32e1ijd6w1" path="res://Objects/Claw/claw.gd" id="1_mys5a"]
 
-[node name="Claw" type="Node2D" unique_id=1480747514]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7shj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kk55d"]
+
+[node name="Claw" type="CharacterBody2D" unique_id=2134338924 node_paths=PackedStringArray("claw_head")]
 script = ExtResource("1_mys5a")
+claw_head = NodePath("ClawHead")
+metadata/_custom_type_script = "uid://od32e1ijd6w1"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1933914733]
+offset_left = -119.0
+offset_top = -13.0
+offset_right = 120.0
+offset_bottom = 12.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1053839476]
+shape = SubResource("RectangleShape2D_a7shj")
+
+[node name="ClawHead" type="Area2D" parent="." unique_id=327584121]
+position = Vector2(-20, -19)
+
+[node name="ColorRect" type="ColorRect" parent="ClawHead" unique_id=2142908063]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClawHead" unique_id=1388975132]
+position = Vector2(20, 19)
+shape = SubResource("RectangleShape2D_kk55d")
+
+[connection signal="area_entered" from="ClawHead" to="." method="grab"]

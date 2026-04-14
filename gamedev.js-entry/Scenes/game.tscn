@@ -1,3 +1,27 @@
 [gd_scene format=3 uid="uid://2q1j8jt3cft6"]
 
+[ext_resource type="PackedScene" uid="uid://b7v2qb0djp0yf" path="res://Objects/Claw/claw.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://dtrjmshj7ebr" path="res://Objects/Items/item.gd" id="2_qxrlw"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wrm1d"]
+
 [node name="Game" type="Node2D" unique_id=701573237]
+
+[node name="Claw" parent="." unique_id=1480747514 instance=ExtResource("1_ebmjs")]
+position = Vector2(-390, -208)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1779705703]
+
+[node name="Item" type="Area2D" parent="." unique_id=1512066818]
+position = Vector2(-10, 235)
+script = ExtResource("2_qxrlw")
+metadata/_custom_type_script = "uid://dtrjmshj7ebr"
+
+[node name="ColorRect" type="ColorRect" parent="Item" unique_id=864463947]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.09019608, 0.24705882, 0.8, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item" unique_id=1963468325]
+position = Vector2(21, 18)
+shape = SubResource("WorldBoundaryShape2D_wrm1d")
