@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Claw
 
 
-@export var claw_area : Area2D
+@export var claw_sprite : AnimatedSprite2D
 
 
 var returned_position : Vector2
@@ -26,6 +26,8 @@ func _ready() -> void:
 func change_input(new_input : INPUT) -> void:
 	input = new_input
 	match input:
+		INPUT.IDLE:
+			claw_sprite.play("open")
 		INPUT.DOWN:
 			velocity.x = 0
 			velocity.y = down_speed
@@ -88,7 +90,9 @@ func handle_return() -> void:
 func grab(item : Item) -> void:
 	if not item is Item: return
 	
-	
+	velocity.y = 0
+	claw_sprite.play('close')
+	await claw_sprite.animation_finished
 	change_input(INPUT.UP)
 
 
