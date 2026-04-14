@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b7v2qb0djp0yf"]
+
+[ext_resource type="Script" uid="uid://od32e1ijd6w1" path="res://Objects/Claw/claw.gd" id="1_mys5a"]
+
+[node name="Claw" type="Node2D" unique_id=1480747514]
+script = ExtResource("1_mys5a")
