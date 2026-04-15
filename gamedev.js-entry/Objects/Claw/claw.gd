@@ -70,13 +70,22 @@ func _physics_process(_delta: float) -> void:
 			handle_up()
 		INPUT.RETURN:
 			handle_return()
-	if is_x_position_in_boundary():
-		move_and_slide()
+	if not is_x_position_in_boundary(): velocity.x = 0
+	if not is_above_ground():
+		position.y -= 1
+		velocity.y = 0
+	move_and_slide()
 
 
 func is_x_position_in_boundary() -> bool:
 	var dir : int = velocity.x / abs(velocity.x) if velocity.x != 0 else 0
 	return position.x + dir < right_boundary_marker.position.x and position.x + dir > left_boundary_marker.position.x
+
+
+func is_above_ground() -> bool:
+	var dir_y : int = 1 if get_claw_input_direction().y > 0 else 0
+	return position.y + dir_y < ground_position_marker.position.y
+	
 
 
 func get_claw_input_direction() -> Vector2:
