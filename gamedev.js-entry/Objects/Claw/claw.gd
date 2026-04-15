@@ -150,6 +150,7 @@ func handle_return() -> void:
 func grab(item : Node2D) -> void:
 	if not input == INPUT.DOWN: return
 	if not item is Item: return
+	if not item.is_grabable: return
 	
 	grabbed_item = item
 	grabbed_item.call_deferred("reparent", self)

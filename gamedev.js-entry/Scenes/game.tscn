@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b7v2qb0djp0yf" path="res://Objects/Claw/claw.tscn" id="1_ebmjs"]
 [ext_resource type="Texture2D" uid="uid://bl4t6gcprkaov" path="res://Objects/Arcade/WideArcadeBG320x180.png" id="2_wrm1d"]
 [ext_resource type="Script" uid="uid://4gssiuyb1hh1" path="res://Objects/Drop Off Area/drop_off_area.gd" id="4_3dryh"]
-[ext_resource type="PackedScene" uid="uid://cicjyyomrjwho" path="res://Objects/Items/Wind Up Mouse/wind_up_mouse.tscn" id="5_wowpa"]
+[ext_resource type="PackedScene" uid="uid://8autcvnmsahw" path="res://Objects/Items/Kick Robot/kick_robot.tscn" id="4_wowpa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
 size = Vector2(257, 20)
@@ -46,8 +46,6 @@ position = Vector2(130, 45)
 [node name="Left Ground Marker" type="Marker2D" parent="Boundary Markers" unique_id=1288797206]
 position = Vector2(-87, 45)
 
-[node name="WindUpMouse" parent="." unique_id=1021702830 instance=ExtResource("5_wowpa")]
-
 [node name="DropOffArea" type="Area2D" parent="." unique_id=1117991140]
 script = ExtResource("4_3dryh")
 metadata/_custom_type_script = "uid://4gssiuyb1hh1"
@@ -55,3 +53,5 @@ metadata/_custom_type_script = "uid://4gssiuyb1hh1"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropOffArea" unique_id=1932202158]
 position = Vector2(-121, 63)
 shape = SubResource("WorldBoundaryShape2D_wowpa")
+
+[node name="KickRobot" parent="." unique_id=843346967 instance=ExtResource("4_wowpa")]
