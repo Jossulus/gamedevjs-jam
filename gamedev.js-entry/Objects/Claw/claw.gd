@@ -190,6 +190,6 @@ func push(direction : Vector2, strength : int) -> void:
 	push_velocity += direction.normalized() * strength
 	drop()
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.get_vector("test_push_left", "test_push_right", "test_push_up", "test_push_down") != Vector2.ZERO:
 		push(Input.get_vector("test_push_left", "test_push_right", "test_push_up", "test_push_down"), 500)

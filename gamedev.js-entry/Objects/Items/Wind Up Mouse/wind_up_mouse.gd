@@ -22,7 +22,8 @@ func _physics_process(_delta: float) -> void:
 			wind_up_timer.start()
 			direction = 1
 			
-		position.x += 1
+		if is_on_floor():
+			position.x += 1
 	if velocity.x > 0:
 		$AnimatedSprite2D.flip_h = true
 	elif velocity.x < 0:

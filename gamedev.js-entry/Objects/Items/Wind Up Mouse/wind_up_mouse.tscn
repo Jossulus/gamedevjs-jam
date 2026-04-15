@@ -32,7 +32,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8a8ul"]
-size = Vector2(32, 15)
+size = Vector2(14, 15)
 
 [node name="WindUpMouse" type="CharacterBody2D" unique_id=1021702830 node_paths=PackedStringArray("wind_up_timer")]
 script = ExtResource("1_o2neo")
@@ -44,7 +44,7 @@ metadata/_custom_type_script = "uid://ckbbi26lwb74m"
 sprite_frames = SubResource("SpriteFrames_vkwn1")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.013072121
+frame_progress = 0.9342884
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=562936504]
 position = Vector2(0, 7.5)
