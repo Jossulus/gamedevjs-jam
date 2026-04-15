@@ -4,20 +4,23 @@
 [ext_resource type="Script" uid="uid://dtrjmshj7ebr" path="res://Objects/Items/item.gd" id="2_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://b0gbe4d0714he" path="res://icon.svg" id="3_3dryh"]
 [ext_resource type="Texture2D" uid="uid://dv1p4cqa56tv4" path="res://Objects/Arcade/ArcadeBG320x180.png" id="3_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://cicjyyomrjwho" path="res://Objects/Items/Wind Up Mouse/wind_up_mouse.tscn" id="5_wowpa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrm1d"]
 size = Vector2(20, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
-size = Vector2(151, 20)
+size = Vector2(129.5, 20)
 
 [node name="Game" type="Node2D" unique_id=701573237]
 
-[node name="Claw" parent="." unique_id=1480747514 node_paths=PackedStringArray("ground_position_marker", "left_boundary_marker", "right_boundary_marker") instance=ExtResource("1_ebmjs")]
+[node name="Claw" parent="." unique_id=1480747514 node_paths=PackedStringArray("ground_position_marker", "left_boundary_marker", "right_boundary_marker", "left_ground_marker", "right_ground_marker") instance=ExtResource("1_ebmjs")]
 position = Vector2(-61, -56)
-ground_position_marker = NodePath("../Ground Position")
-left_boundary_marker = NodePath("../Ground Position")
-right_boundary_marker = NodePath("../RightBoundary")
+ground_position_marker = NodePath("../Boundary Markers/Ground Position")
+left_boundary_marker = NodePath("../Boundary Markers/Ground Position")
+right_boundary_marker = NodePath("../Boundary Markers/RightBoundary")
+left_ground_marker = NodePath("../Boundary Markers/Left Ground Marker")
+right_ground_marker = NodePath("../Boundary Markers/RightBoundary")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1779705703]
 zoom = Vector2(3, 3)
@@ -37,14 +40,22 @@ texture = ExtResource("3_3dryh")
 [node name="Arcade" type="Sprite2D" parent="." unique_id=1178266821]
 texture = ExtResource("3_wrm1d")
 
-[node name="Ground Position" type="Marker2D" parent="." unique_id=82896138]
-position = Vector2(-68, 29)
-
-[node name="RightBoundary" type="Marker2D" parent="." unique_id=720215480]
-position = Vector2(66, 45)
-
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1947102252]
 position = Vector2(30, 55)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=941247980]
+position = Vector2(10.75, 0)
 shape = SubResource("RectangleShape2D_3dryh")
+
+[node name="Boundary Markers" type="Node2D" parent="." unique_id=404173384]
+
+[node name="Ground Position" type="Marker2D" parent="Boundary Markers" unique_id=82896138]
+position = Vector2(-68, 29)
+
+[node name="RightBoundary" type="Marker2D" parent="Boundary Markers" unique_id=720215480]
+position = Vector2(66, 45)
+
+[node name="Left Ground Marker" type="Marker2D" parent="Boundary Markers" unique_id=1288797206]
+position = Vector2(-22, 45)
+
+[node name="WindUpMouse" parent="." unique_id=1021702830 instance=ExtResource("5_wowpa")]

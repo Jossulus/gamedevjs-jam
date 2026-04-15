@@ -11,6 +11,10 @@ class_name Claw
 @export var right_boundary_marker : Marker2D
 
 
+@export var left_ground_marker : Marker2D
+@export var right_ground_marker : Marker2D
+
+
 @export var claw_grab_position_marker : Marker2D
 
 
@@ -31,7 +35,17 @@ var input : INPUT = INPUT.IDLE
 @export var up_speed : int = 80
 
 
+func set_global_variables() -> void:
+	Globals.claw = self
+	Globals.ground_position_marker = ground_position_marker
+	Globals.left_boundary_marker = ground_position_marker
+	Globals.right_boundary_marker = right_boundary_marker
+	Globals.left_ground_marker = left_ground_marker
+	Globals.right_ground_marker = right_ground_marker
+
+
 func _ready() -> void:
+	set_global_variables()
 	assert(is_x_position_in_boundary(), "Claw not inside boundaries.")
 	assert(ground_position_marker, "Claw does not know where the ground is, because no ground_position_marker is assigned.")
 	returned_position = position

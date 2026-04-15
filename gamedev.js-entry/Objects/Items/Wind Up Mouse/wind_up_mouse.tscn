@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cicjyyomrjwho"]
+
+[ext_resource type="Script" uid="uid://ckbbi26lwb74m" path="res://Objects/Items/Wind Up Mouse/wind_up_mouse.gd" id="1_o2neo"]
+[ext_resource type="Texture2D" uid="uid://dat5r1ao4mnpt" path="res://Objects/Items/Wind Up Mouse/ratRobot.png" id="2_d07t6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybi0c"]
+atlas = ExtResource("2_d07t6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6abn"]
+atlas = ExtResource("2_d07t6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vkwn1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybi0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6abn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8a8ul"]
+size = Vector2(32, 15)
+
+[node name="WindUpMouse" type="CharacterBody2D" unique_id=1021702830 node_paths=PackedStringArray("wind_up_timer")]
+script = ExtResource("1_o2neo")
+wind_up_timer = NodePath("Timer")
+metadata/_custom_type_script = "uid://ckbbi26lwb74m"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=568144237]
+sprite_frames = SubResource("SpriteFrames_vkwn1")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.013072121
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=562936504]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_8a8ul")
+
+[node name="Timer" type="Timer" parent="." unique_id=674813827]
+one_shot = true
