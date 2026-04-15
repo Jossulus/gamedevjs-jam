@@ -7,6 +7,13 @@ var is_grabbed : bool = false
 var initial_drop_speed : int = 80
 
 
+@export var item_data : ItemData
+
+
+func _ready() -> void:
+	assert(item_data, 'No item_data.')
+
+
 func _physics_process(_delta: float) -> void:
 	apply_gravity()
 
