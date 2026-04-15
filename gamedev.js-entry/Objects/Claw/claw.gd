@@ -35,6 +35,9 @@ var input : INPUT = INPUT.IDLE
 @export var up_speed : int = 80
 
 
+var push_velocity : Vector2
+
+
 func set_global_variables() -> void:
 	Globals.claw = self
 	Globals.ground_position_marker = ground_position_marker
@@ -60,6 +63,7 @@ func change_input(new_input : INPUT) -> void:
 	match input:
 		INPUT.IDLE:
 			drop()
+			claw_sprite.play('open')
 		INPUT.FREE:
 			velocity.y = 0
 		INPUT.DOWN:
@@ -72,7 +76,7 @@ func change_input(new_input : INPUT) -> void:
 			return_claw()
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	match input:
 		INPUT.IDLE:
 			handle_idle()
@@ -85,8 +89,10 @@ func _physics_process(_delta: float) -> void:
 		INPUT.RETURN:
 			handle_return()
 	if not is_x_position_in_boundary(): velocity.x = 0
-	if not is_above_ground() and get_claw_input_direction().y > 0:
-		velocity.y = 0
+	if is_above_ground():
+		velocity.y = clampf(velocity.y,-INF, 0)
+		
+	push_velocity = lerp(push_velocity, Vector2.ZERO, 1 - exp(-10 * delta))
 	move_and_slide()
 
 
@@ -96,7 +102,7 @@ func is_x_position_in_boundary() -> bool:
 
 
 func is_above_ground() -> bool:
-	return position.y < ground_position_marker.position.y
+	return position.y > ground_position_marker.position.y
 	
 
 
@@ -119,6 +125,7 @@ func handle_free() -> void:
 func handle_down() -> void:
 	if position.y >= ground_position_marker.position.y:
 		claw_sprite.play('close')
+		velocity += push_velocity
 		change_input(INPUT.UP)
 
 
@@ -127,6 +134,7 @@ func handle_up() -> void:
 	var v_speed : float = down_speed if get_claw_input_direction().y > 0 else up_speed
 	velocity.y = get_claw_input_direction().y * v_speed
 	
+	velocity += push_velocity
 	
 	if position.y <= returned_position.y:
 		if grabbed_item:
@@ -160,7 +168,6 @@ func drop() -> void:
 		grabbed_item.reparent(get_tree().root.get_node("Game"))
 		grabbed_item.is_grabbed = false
 	grabbed_item = null
-	claw_sprite.play('open')
 
 
 func return_claw() -> void:
@@ -176,3 +183,13 @@ func return_claw() -> void:
 	
 	await position_tween.finished
 	change_input(INPUT.IDLE)
+
+
+
+func push(direction : Vector2, strength : int) -> void:
+	push_velocity += direction.normalized() * strength
+	drop()
+
+func _input(event: InputEvent) -> void:
+	if Input.get_vector("test_push_left", "test_push_right", "test_push_up", "test_push_down") != Vector2.ZERO:
+		push(Input.get_vector("test_push_left", "test_push_right", "test_push_up", "test_push_down"), 500)

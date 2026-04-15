@@ -25,6 +25,7 @@ position = Vector2(0, -13)
 zoom = Vector2(3, 3)
 
 [node name="Arcade" type="Sprite2D" parent="." unique_id=1178266821]
+z_index = 1
 texture = ExtResource("2_wrm1d")
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1947102252]
