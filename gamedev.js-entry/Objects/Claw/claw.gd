@@ -28,7 +28,7 @@ var input : INPUT = INPUT.IDLE
 
 @export var down_speed : int = 500
 
-@export var up_speed : int = -300
+@export var up_speed : int = 300
 
 
 func _ready() -> void:
@@ -38,10 +38,16 @@ func _ready() -> void:
 
 
 func change_input(new_input : INPUT) -> void:
+	match input:
+		INPUT.UP:
+			if new_input == INPUT.FREE:
+				claw_sprite.play('open')
 	input = new_input
 	match input:
 		INPUT.IDLE:
 			drop()
+		INPUT.FREE:
+			velocity.y = 0
 		INPUT.DOWN:
 			velocity.x = 0
 			velocity.y = down_speed
@@ -73,17 +79,17 @@ func is_x_position_in_boundary() -> bool:
 	return position.x + dir < right_boundary_marker.position.x and position.x + dir > left_boundary_marker.position.x
 
 
-func get_claw_input_direction() -> float:
-	return Input.get_axis("claw_left", "claw_right")
+func get_claw_input_direction() -> Vector2:
+	return Input.get_vector("claw_left", "claw_right", "claw_up", "claw_down")
 
 
 func handle_idle() -> void:
-	if get_claw_input_direction() != 0:
+	if get_claw_input_direction().x != 0:
 		change_input(INPUT.FREE)
 
 
 func handle_free() -> void:
-	velocity.x = get_claw_input_direction() * speed
+	velocity.x = get_claw_input_direction().x * speed
 	
 	if Input.is_action_just_pressed("claw_trigger"):
 		change_input(INPUT.DOWN)
@@ -96,10 +102,16 @@ func handle_down() -> void:
 
 
 func handle_up() -> void:
-	velocity.x = get_claw_input_direction() * speed
+	velocity.x = get_claw_input_direction().x * speed
+	var v_speed : float = down_speed if get_claw_input_direction().y > 0 else up_speed
+	velocity.y = get_claw_input_direction().y * v_speed
+	
 	
 	if position.y <= returned_position.y:
-		change_input(INPUT.RETURN)
+		if grabbed_item:
+			change_input(INPUT.RETURN)
+		else:
+			change_input(INPUT.FREE)
 
 
 func handle_return() -> void:

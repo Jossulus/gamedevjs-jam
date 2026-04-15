@@ -38,7 +38,7 @@ texture = ExtResource("3_3dryh")
 texture = ExtResource("3_wrm1d")
 
 [node name="Ground Position" type="Marker2D" parent="." unique_id=82896138]
-position = Vector2(-68, 46)
+position = Vector2(-68, 21)
 
 [node name="RightBoundary" type="Marker2D" parent="." unique_id=720215480]
 position = Vector2(66, 45)

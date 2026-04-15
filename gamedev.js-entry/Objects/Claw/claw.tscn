@@ -139,6 +139,7 @@ claw_grab_position_marker = NodePath("ClawGrabPosition")
 metadata/_custom_type_script = "uid://od32e1ijd6w1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1053839476]
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_a7shj")
 disabled = true
 
