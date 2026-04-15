@@ -27,7 +27,6 @@ func _physics_process(_delta: float) -> void:
 		$AnimatedSprite2D.flip_h = true
 	elif velocity.x < 0:
 		$AnimatedSprite2D.flip_h = false
-	print(velocity.x)
 	if !is_grabbed and wind_up_timer.is_stopped():
 		move_and_slide()
 	apply_gravity()
