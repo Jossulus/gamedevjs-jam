@@ -24,11 +24,11 @@ enum INPUT{IDLE, FREE, DOWN, UP, RETURN}
 var input : INPUT = INPUT.IDLE
 
 
-@export var speed : int = 200
+@export var speed : int = 150
 
-@export var down_speed : int = 500
+@export var down_speed : int = 200
 
-@export var up_speed : int = 300
+@export var up_speed : int = 80
 
 
 func _ready() -> void:
