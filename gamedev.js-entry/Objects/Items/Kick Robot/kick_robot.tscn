@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://8autcvnmsahw"]
 
 [ext_resource type="Script" uid="uid://cdb3j1gspknik" path="res://Objects/Items/Kick Robot/kick_robot.gd" id="1_78p7e"]
-[ext_resource type="Texture2D" uid="uid://ceaec0p1csvku" path="res://Objects/Items/Kick Robot/kickBot.png" id="2_6mcdu"]
 [ext_resource type="Script" uid="uid://dkq4hoaydelmk" path="res://Objects/Items/item_data.gd" id="2_wn50l"]
+[ext_resource type="Texture2D" uid="uid://k306unwj1yww" path="res://Objects/Items/Kick Robot/kickRobo32.png" id="3_6mcdu"]
 
 [sub_resource type="Resource" id="Resource_pswsb"]
 script = ExtResource("2_wn50l")
@@ -10,76 +10,76 @@ name = "Kick Robot"
 metadata/_custom_type_script = "uid://dkq4hoaydelmk"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wn50l"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(320, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pswsb"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(384, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjqie"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(0, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_35hlc"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(64, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3n3q2"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(128, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgv5a"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(192, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_chl50"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(256, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eohd"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(448, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_goyw8"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(512, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gckn"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(0, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8hsr"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(64, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ukre"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(128, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cm43d"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(192, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0k1ww"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(256, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wy2jy"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(320, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74mkd"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(384, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cto2r"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(448, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d731i"]
-atlas = ExtResource("2_6mcdu")
-region = Rect2(512, 0, 64, 64)
+atlas = ExtResource("3_6mcdu")
+region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rbe7t"]
 animations = [{
@@ -176,7 +176,6 @@ item_data = SubResource("Resource_pswsb")
 metadata/_custom_type_script = "uid://cdb3j1gspknik"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=829454875]
-scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_rbe7t")
 animation = &"awake"
 autoplay = "idle"

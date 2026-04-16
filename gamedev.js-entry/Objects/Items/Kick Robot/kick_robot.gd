@@ -19,6 +19,8 @@ var direction : int = 0
 
 var jump_height : int: get = get_jump_height
 
+@export var max_jump_height : int = 30
+
 var push_velocity : Vector2
 
 
@@ -31,7 +33,7 @@ var push_velocity_length_cutoff : int = 5
 
 
 func get_jump_height() -> int:
-	return int(position.y - Globals.claw.position.y)
+	return clampi(int(position.y - Globals.claw.position.y), 0,max_jump_height)
 
 
 
@@ -86,6 +88,8 @@ func _physics_process(delta: float) -> void:
 			velocity.x = get_direction_to_claw() * speed
 			if abs(get_displacement_to_claw()) <= jump_distance:
 				change_state(STATE.JUMP)
+			elif abs(get_displacement_to_claw()) > aggro_distance:
+				change_state(STATE.WANDER)
 		STATE.JUMP:
 			if velocity.y > 0:
 				change_state(STATE.LAND)
@@ -102,6 +106,10 @@ func _physics_process(delta: float) -> void:
 				
 				push_velocity = lerp(push_velocity, Vector2.ZERO, 1 - exp(-10 * delta))
 	apply_gravity()
+	if is_outside_left_edge():
+		velocity.x = 1
+	elif is_outside_right_edge():
+		velocity.x = -1
 	move_and_slide()
 
 
