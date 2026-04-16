@@ -69,7 +69,6 @@ func change_state(new_state : STATE) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(state)
 	if get_direction_to_claw() < 0:
 		$AnimatedSprite2D.flip_h = false
 	elif get_direction_to_claw() > 0:

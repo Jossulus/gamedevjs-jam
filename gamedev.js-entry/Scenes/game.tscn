@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://2q1j8jt3cft6"]
 
 [ext_resource type="PackedScene" uid="uid://b7v2qb0djp0yf" path="res://Objects/Claw/claw.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://006amvov5kd0" path="res://Objects/Camera/camera.gd" id="2_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://bl4t6gcprkaov" path="res://Objects/Arcade/WideArcadeBG320x180.png" id="2_wrm1d"]
 [ext_resource type="Script" uid="uid://4gssiuyb1hh1" path="res://Objects/Drop Off Area/drop_off_area.gd" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://8autcvnmsahw" path="res://Objects/Items/Kick Robot/kick_robot.tscn" id="4_wowpa"]
@@ -22,8 +23,14 @@ right_boundary_marker = NodePath("../Boundary Markers/RightBoundary")
 left_ground_marker = NodePath("../Boundary Markers/Left Ground Marker")
 right_ground_marker = NodePath("../Boundary Markers/RightBoundary")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1779705703]
+[node name="Camera2D" type="Camera2D" parent="Claw" unique_id=1779705703]
 zoom = Vector2(3.6, 3.6)
+limit_left = -160
+limit_top = -90
+limit_right = 160
+limit_bottom = 90
+position_smoothing_enabled = true
+script = ExtResource("2_1l0tm")
 
 [node name="Arcade" type="Sprite2D" parent="." unique_id=1178266821]
 z_index = 1

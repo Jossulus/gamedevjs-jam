@@ -194,6 +194,8 @@ func return_claw() -> void:
 
 func push(direction : Vector2, strength : int) -> void:
 	push_velocity += direction.normalized() * strength
+	if get_viewport().get_camera_2d().has_method('add_trauma'):
+		get_viewport().get_camera_2d().add_trauma(strength)
 	drop()
 
 func _input(_event: InputEvent) -> void:
