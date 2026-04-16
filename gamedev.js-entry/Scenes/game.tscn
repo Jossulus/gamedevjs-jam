@@ -7,11 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://8autcvnmsahw" path="res://Objects/Items/Kick Robot/kick_robot.tscn" id="4_wowpa"]
 [ext_resource type="Texture2D" uid="uid://bhasyr683to64" path="res://Objects/Arcade/backgroundOnly.png" id="5_wowpa"]
 [ext_resource type="PackedScene" uid="uid://cicjyyomrjwho" path="res://Objects/Items/Wind Up Mouse/wind_up_mouse.tscn" id="6_i6g32"]
+[ext_resource type="PackedScene" uid="uid://b6ogy8x3vdcmj" path="res://Objects/Items/Crocodile/crocodile.tscn" id="8_v158k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
 size = Vector2(257, 20)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wowpa"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_v158k"]
+b = Vector2(225, 0)
 
 [node name="Game" type="Node2D" unique_id=701573237]
 
@@ -70,3 +74,14 @@ z_index = -1
 texture = ExtResource("5_wowpa")
 
 [node name="WindUpMouse" parent="." unique_id=1021702830 instance=ExtResource("6_i6g32")]
+
+[node name="Crocodile" parent="." unique_id=1707630846 node_paths=PackedStringArray("detection_area") instance=ExtResource("8_v158k")]
+position = Vector2(-85, 0)
+max_bite_strength = 200.0
+bite_strength_regen_per_s = 0.5
+detection_area = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="Crocodile" unique_id=1751271849]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crocodile/Area2D" unique_id=1971684501]
+shape = SubResource("SegmentShape2D_v158k")

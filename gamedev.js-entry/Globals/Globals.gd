@@ -12,3 +12,10 @@ var right_ground_marker : Marker2D
 
 
 var claw : Claw
+
+
+var cam : Camera2D
+
+
+func apply_cam_shake(strength : float):
+	cam.add_trauma(strength)

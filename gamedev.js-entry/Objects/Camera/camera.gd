@@ -12,6 +12,7 @@ var noise := FastNoiseLite.new()
 var noise_y := 0.0
 
 func _ready():
+	Globals.cam = self
 	noise.seed = randi()
 	noise.frequency = 0.1
 

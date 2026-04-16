@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://b6ogy8x3vdcmj"]
+
+[ext_resource type="Script" uid="uid://buf3vdmq4hyux" path="res://Objects/Items/Crocodile/crocodile.gd" id="1_e1e3o"]
+[ext_resource type="Texture2D" uid="uid://bj55dda8pxhoa" path="res://Objects/Items/Crocodile/crocodile.png" id="2_74t2j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74t2j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsoq6"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvn2i"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cysq1"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knx85"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7ul6"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xekp"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poxs8"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w56kx"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phjs7"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6ov4"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05i0m"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6fc4"]
+atlas = ExtResource("2_74t2j")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f4the"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsoq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvn2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cysq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knx85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7ul6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xekp")
+}],
+"loop": false,
+"name": &"bite",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poxs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w56kx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phjs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6ov4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05i0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6fc4")
+}],
+"loop": false,
+"name": &"open",
+"speed": 20.0
+}]
+
+[node name="Crocodile" type="CharacterBody2D" unique_id=1707630846]
+script = ExtResource("1_e1e3o")
+bite_strength_regen_per_s = 10.0
+metadata/_custom_type_script = "uid://buf3vdmq4hyux"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1265510874]
+shape = SubResource("RectangleShape2D_74t2j")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1812169447]
+sprite_frames = SubResource("SpriteFrames_f4the")
+animation = &"open"
+frame = 5
+frame_progress = 1.0
+
+[node name="RegenTimer" type="Timer" parent="." unique_id=1144058723]
+autostart = true
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1791747205]
+one_shot = true
+
+[connection signal="timeout" from="RegenTimer" to="." method="regenerate_bite_strength"]

@@ -38,6 +38,10 @@ var input : INPUT = INPUT.IDLE
 var push_velocity : Vector2
 
 
+var is_snapped_by_crocodile : bool = false
+
+
+
 func set_global_variables() -> void:
 	Globals.claw = self
 	Globals.ground_position_marker = ground_position_marker
@@ -94,8 +98,11 @@ func _physics_process(delta: float) -> void:
 	if is_above_ground():
 		velocity.y = clampf(velocity.y,-INF, 0)
 		
-	move_and_slide()
+	if can_move(): move_and_slide()
 
+
+func can_move() -> bool:
+	return !is_snapped_by_crocodile
 
 
 func is_outside_left_edge() -> bool:
@@ -152,6 +159,7 @@ func handle_return() -> void:
 
 
 func grab(item : Node2D) -> void:
+	if is_snapped_by_crocodile: return
 	if not (input == INPUT.DOWN or input == INPUT.UP): return
 	if not item is Item: return
 	if not item.is_grabable: return
@@ -194,10 +202,5 @@ func return_claw() -> void:
 
 func push(direction : Vector2, strength : int) -> void:
 	push_velocity += direction.normalized() * strength
-	if get_viewport().get_camera_2d().has_method('add_trauma'):
-		get_viewport().get_camera_2d().add_trauma(strength)
+	Globals.apply_cam_shake(strength)
 	drop()
-
-func _input(_event: InputEvent) -> void:
-	if Input.get_vector("test_push_left", "test_push_right", "test_push_up", "test_push_down") != Vector2.ZERO:
-		push(Input.get_vector("test_push_left", "test_push_right", "test_push_up", "test_push_down"), 500)
