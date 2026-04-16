@@ -35,11 +35,11 @@ func _ready() -> void:
 	detection_area.area_entered.connect(snap)
 
 
-func _process(delta: float) -> void:
-	print(bite_strength)
+func _process(_delta: float) -> void:
+	#print(bite_strength)
 	
-	var input_dir : float = Input.get_axis("claw_left", "claw_right")
-	print('input: ', str(input_dir))
+	var input_dir : int = int(Input.get_axis("claw_left", "claw_right"))
+	#print('input: ', str(input_dir))
 	if Globals.claw.is_snapped_by_crocodile and input_dir != 0:
 		if next_expected_bite_freeing_direction == 0:
 			next_expected_bite_freeing_direction = -input_dir
