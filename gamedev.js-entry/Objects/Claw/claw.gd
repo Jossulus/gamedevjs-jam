@@ -88,11 +88,12 @@ func _physics_process(delta: float) -> void:
 			handle_up()
 		INPUT.RETURN:
 			handle_return()
+	
+	push_velocity = lerp(push_velocity, Vector2.ZERO, 1 - exp(-10 * delta))
 	if not is_x_position_in_boundary(): velocity.x = 0
 	if is_above_ground():
 		velocity.y = clampf(velocity.y,-INF, 0)
 		
-	push_velocity = lerp(push_velocity, Vector2.ZERO, 1 - exp(-10 * delta))
 	move_and_slide()
 
 

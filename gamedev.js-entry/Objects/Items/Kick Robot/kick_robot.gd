@@ -33,7 +33,9 @@ var push_velocity_length_cutoff : int = 5
 
 
 func get_jump_height() -> int:
-	return clampi(int(position.y - Globals.claw.position.y), 0,max_jump_height)
+	var clamped_jump_height : int = clampi(int(position.y - Globals.claw.position.y), 0,max_jump_height)
+	if clamped_jump_height < 5: return 5
+	return clamped_jump_height
 
 
 
@@ -51,11 +53,12 @@ func change_state(new_state : STATE) -> void:
 	match state:
 		STATE.WANDER:
 			is_grabable = true
+			await get_tree().create_timer(1).timeout
 			new_wander_interval()
 		STATE.CHASE:
 			pass
 		STATE.JUMP:
-			is_grabable = false
+			#is_grabable = false
 			velocity.x = 0
 			$AnimatedSprite2D.play("awake")
 			await $AnimatedSprite2D.animation_finished
@@ -66,6 +69,7 @@ func change_state(new_state : STATE) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	print(state)
 	if get_direction_to_claw() < 0:
 		$AnimatedSprite2D.flip_h = false
 	elif get_direction_to_claw() > 0:
@@ -110,6 +114,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 1
 	elif is_outside_right_edge():
 		velocity.x = -1
+	if is_grabbed:
+		velocity = Vector2.ZERO
 	move_and_slide()
 
 
