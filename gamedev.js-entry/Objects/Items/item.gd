@@ -30,6 +30,8 @@ func apply_gravity() -> void:
 	elif is_grabbed:
 		velocity.y = initial_drop_speed
 		velocity.x = 0
+	elif is_on_floor():
+		velocity.y = clampf(velocity.y, -INF, 0)
 
 
 func is_outside_left_edge() -> bool:

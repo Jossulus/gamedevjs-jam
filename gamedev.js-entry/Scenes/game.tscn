@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bhasyr683to64" path="res://Objects/Arcade/backgroundOnly.png" id="5_wowpa"]
 [ext_resource type="PackedScene" uid="uid://cicjyyomrjwho" path="res://Objects/Items/Wind Up Mouse/wind_up_mouse.tscn" id="6_i6g32"]
 [ext_resource type="PackedScene" uid="uid://b6ogy8x3vdcmj" path="res://Objects/Items/Crocodile/crocodile.tscn" id="8_v158k"]
+[ext_resource type="PackedScene" uid="uid://6j817gmiiuif" path="res://Objects/Items/Flying Ball/flying_ball.tscn" id="9_h4fw4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
 size = Vector2(257, 20)
@@ -60,6 +61,7 @@ position = Vector2(130, 45)
 position = Vector2(-87, 45)
 
 [node name="DropOffArea" type="Area2D" parent="." unique_id=1117991140]
+collision_mask = 3
 script = ExtResource("4_3dryh")
 metadata/_custom_type_script = "uid://4gssiuyb1hh1"
 
@@ -77,6 +79,7 @@ texture = ExtResource("5_wowpa")
 
 [node name="Crocodile" parent="." unique_id=1707630846 node_paths=PackedStringArray("detection_area") instance=ExtResource("8_v158k")]
 position = Vector2(-85, 0)
+snap_radius = 20.0
 max_bite_strength = 200.0
 bite_strength_regen_per_s = 0.5
 detection_area = NodePath("Area2D")
@@ -85,3 +88,5 @@ detection_area = NodePath("Area2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crocodile/Area2D" unique_id=1971684501]
 shape = SubResource("SegmentShape2D_v158k")
+
+[node name="FlyingBall" parent="." unique_id=2066199596 instance=ExtResource("9_h4fw4")]
