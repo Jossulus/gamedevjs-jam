@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bl4t6gcprkaov" path="res://Objects/Arcade/WideArcadeBG320x180.png" id="2_wrm1d"]
 [ext_resource type="Script" uid="uid://4gssiuyb1hh1" path="res://Objects/Drop Off Area/drop_off_area.gd" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://8autcvnmsahw" path="res://Objects/Items/Kick Robot/kick_robot.tscn" id="4_wowpa"]
+[ext_resource type="Texture2D" uid="uid://bhasyr683to64" path="res://Objects/Arcade/backgroundOnly.png" id="5_wowpa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
 size = Vector2(257, 20)
@@ -21,8 +22,7 @@ left_ground_marker = NodePath("../Boundary Markers/Left Ground Marker")
 right_ground_marker = NodePath("../Boundary Markers/RightBoundary")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1779705703]
-position = Vector2(0, -13)
-zoom = Vector2(3, 3)
+zoom = Vector2(3.6, 3.6)
 
 [node name="Arcade" type="Sprite2D" parent="." unique_id=1178266821]
 z_index = 1
@@ -55,3 +55,7 @@ position = Vector2(-121, 63)
 shape = SubResource("WorldBoundaryShape2D_wowpa")
 
 [node name="KickRobot" parent="." unique_id=843346967 instance=ExtResource("4_wowpa")]
+
+[node name="BackgroundOnly" type="Sprite2D" parent="." unique_id=1464724672]
+z_index = -1
+texture = ExtResource("5_wowpa")
