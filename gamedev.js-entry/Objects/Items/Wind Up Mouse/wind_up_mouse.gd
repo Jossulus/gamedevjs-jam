@@ -31,3 +31,6 @@ func _physics_process(_delta: float) -> void:
 	if !is_grabbed and wind_up_timer.is_stopped():
 		move_and_slide()
 	apply_gravity()
+	if not is_on_floor():
+		velocity.x = 0
+		move_and_slide()

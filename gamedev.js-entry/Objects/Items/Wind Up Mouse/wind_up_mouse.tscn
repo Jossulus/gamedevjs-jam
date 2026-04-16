@@ -35,6 +35,7 @@ animations = [{
 size = Vector2(14, 15)
 
 [node name="WindUpMouse" type="CharacterBody2D" unique_id=1021702830 node_paths=PackedStringArray("wind_up_timer")]
+collision_layer = 2
 script = ExtResource("1_o2neo")
 wind_up_timer = NodePath("Timer")
 item_data = SubResource("Resource_a6abn")

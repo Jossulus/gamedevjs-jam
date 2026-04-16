@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://4gssiuyb1hh1" path="res://Objects/Drop Off Area/drop_off_area.gd" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://8autcvnmsahw" path="res://Objects/Items/Kick Robot/kick_robot.tscn" id="4_wowpa"]
 [ext_resource type="Texture2D" uid="uid://bhasyr683to64" path="res://Objects/Arcade/backgroundOnly.png" id="5_wowpa"]
+[ext_resource type="PackedScene" uid="uid://cicjyyomrjwho" path="res://Objects/Items/Wind Up Mouse/wind_up_mouse.tscn" id="6_i6g32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
 size = Vector2(257, 20)
@@ -30,6 +31,7 @@ texture = ExtResource("2_wrm1d")
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1947102252]
 position = Vector2(30, 55)
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=941247980]
 position = Vector2(0.5, 0)
@@ -59,3 +61,5 @@ shape = SubResource("WorldBoundaryShape2D_wowpa")
 [node name="BackgroundOnly" type="Sprite2D" parent="." unique_id=1464724672]
 z_index = -1
 texture = ExtResource("5_wowpa")
+
+[node name="WindUpMouse" parent="." unique_id=1021702830 instance=ExtResource("6_i6g32")]
