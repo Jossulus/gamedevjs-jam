@@ -1,8 +1,7 @@
-extends Control
+extends Node2D
 
 func _ready() -> void:
-	%StartButton.pressed.connect(_on_start_pressed)
-	%QuitButton.pressed.connect(_on_quit_pressed)
+	print("MainMenu loaded successfully")
 
 func _on_start_pressed() -> void:
 	print("START button pressed - attempting to load game scene")
