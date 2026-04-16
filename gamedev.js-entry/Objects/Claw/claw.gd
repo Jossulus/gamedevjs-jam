@@ -57,8 +57,7 @@ func _ready() -> void:
 func change_input(new_input : INPUT) -> void:
 	match input:
 		INPUT.UP:
-			if new_input == INPUT.FREE:
-				claw_sprite.play('open')
+			pass
 	input = new_input
 	match input:
 		INPUT.IDLE:
@@ -130,7 +129,6 @@ func handle_free() -> void:
 
 func handle_down() -> void:
 	if position.y >= ground_position_marker.position.y:
-		claw_sprite.play('close')
 		velocity += push_velocity
 		change_input(INPUT.UP)
 
@@ -154,7 +152,7 @@ func handle_return() -> void:
 
 
 func grab(item : Node2D) -> void:
-	if not input == INPUT.DOWN: return
+	if not (input == INPUT.DOWN or input == INPUT.UP): return
 	if not item is Item: return
 	if not item.is_grabable: return
 	if grabbed_item: return
