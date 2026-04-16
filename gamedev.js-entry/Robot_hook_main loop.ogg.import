@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dsdun4yv3ceeu"
+path="res://.godot/imported/Robot_hook_main loop.ogg-ae9499d9917ff151b7526bd0b4186da8.oggvorbisstr"
+
+[deps]
+
+source_file="res://Robot_hook_main loop.ogg"
+dest_files=["res://.godot/imported/Robot_hook_main loop.ogg-ae9499d9917ff151b7526bd0b4186da8.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

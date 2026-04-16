@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cicjyyomrjwho" path="res://Objects/Items/Wind Up Mouse/wind_up_mouse.tscn" id="6_i6g32"]
 [ext_resource type="PackedScene" uid="uid://b6ogy8x3vdcmj" path="res://Objects/Items/Crocodile/crocodile.tscn" id="8_v158k"]
 [ext_resource type="PackedScene" uid="uid://6j817gmiiuif" path="res://Objects/Items/Flying Ball/flying_ball.tscn" id="9_h4fw4"]
+[ext_resource type="AudioStream" uid="uid://dsdun4yv3ceeu" path="res://Robot_hook_main loop.ogg" id="10_ldgsr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
 size = Vector2(257, 20)
@@ -79,6 +80,8 @@ texture = ExtResource("5_wowpa")
 
 [node name="Crocodile" parent="." unique_id=1707630846 node_paths=PackedStringArray("detection_area") instance=ExtResource("8_v158k")]
 position = Vector2(-85, 0)
+snap_time = 0.77
+retract_time = 0.1
 snap_radius = 20.0
 max_bite_strength = 200.0
 bite_strength_regen_per_s = 0.5
@@ -90,3 +93,7 @@ detection_area = NodePath("Area2D")
 shape = SubResource("SegmentShape2D_v158k")
 
 [node name="FlyingBall" parent="." unique_id=2066199596 instance=ExtResource("9_h4fw4")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=771398351]
+stream = ExtResource("10_ldgsr")
+autoplay = true
