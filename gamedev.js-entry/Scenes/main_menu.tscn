@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://Scenes/main_menu.gd"]
-[ext_resource type="Texture2D" path="res://Objects/Arcade/ArcadeBG320x180.png"]
+[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Objects/Arcade/ArcadeBG320x180.png" id="2"]
 
 [node name="MainMenu" type="Control"]
 anchor_left = 0.0
