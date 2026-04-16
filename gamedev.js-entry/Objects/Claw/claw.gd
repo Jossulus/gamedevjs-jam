@@ -49,7 +49,7 @@ func set_global_variables() -> void:
 
 func _ready() -> void:
 	set_global_variables()
-	assert(is_x_position_in_boundary(), "Claw not inside boundaries.")
+	assert(!is_outside_left_edge() and !is_outside_right_edge(), "Claw not inside boundaries.")
 	assert(ground_position_marker, "Claw does not know where the ground is, because no ground_position_marker is assigned.")
 	returned_position = position
 
@@ -90,16 +90,21 @@ func _physics_process(delta: float) -> void:
 			handle_return()
 	
 	push_velocity = lerp(push_velocity, Vector2.ZERO, 1 - exp(-10 * delta))
-	if not is_x_position_in_boundary(): velocity.x = 0
+	if is_outside_left_edge(): velocity.x = 1
+	elif is_outside_right_edge(): velocity.x = -1
 	if is_above_ground():
 		velocity.y = clampf(velocity.y,-INF, 0)
 		
 	move_and_slide()
 
 
-func is_x_position_in_boundary() -> bool:
-	var dir : int = velocity.x / abs(velocity.x) if velocity.x != 0 else 0
-	return position.x + dir <= right_boundary_marker.position.x and position.x + dir >= left_boundary_marker.position.x
+
+func is_outside_left_edge() -> bool:
+	return position.x + velocity.x * get_physics_process_delta_time() < left_boundary_marker.position.x
+
+
+func is_outside_right_edge() -> bool:
+	return position.x + velocity.x * get_physics_process_delta_time() > right_boundary_marker.position.x
 
 
 func is_above_ground() -> bool:
@@ -152,6 +157,7 @@ func grab(item : Node2D) -> void:
 	if not input == INPUT.DOWN: return
 	if not item is Item: return
 	if not item.is_grabable: return
+	if grabbed_item: return
 	
 	grabbed_item = item
 	grabbed_item.call_deferred("reparent", self)
