@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://cghk21v4j0lev"]
 
-[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Objects/Arcade/ArcadeBG320x180.png" id="2"]
+[ext_resource type="Script" uid="uid://b6mlf2hgz47dl" path="res://Scenes/main_menu.gd" id="1_gp7xs"]
+[ext_resource type="Texture2D" uid="uid://c2xd8yd8y8yrf" path="res://Objects/Arcade/ArcadeBG320x180.png" id="2_kwlmh"]
 
 [node name="MainMenu" type="Control"]
 anchor_left = 0.0
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = Control.GROW_DIRECTION_END
 grow_vertical = Control.GROW_DIRECTION_END
-script = ExtResource("1")
+script = ExtResource("1_gp7xs")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_left = 0.0
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = Control.GROW_DIRECTION_END
 grow_vertical = Control.GROW_DIRECTION_END
-texture = ExtResource("2")
+texture = ExtResource("2_kwlmh")
 expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 
