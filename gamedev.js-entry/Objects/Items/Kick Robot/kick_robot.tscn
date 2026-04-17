@@ -145,12 +145,13 @@ speed = 50
 wander_interval_min = 1
 wander_interval_max = 2
 interval_timer = NodePath("Timer")
+max_jump_height = 140
 item_data = SubResource("Resource_pswsb")
 metadata/_custom_type_script = "uid://cdb3j1gspknik"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=829454875]
 sprite_frames = SubResource("SpriteFrames_rbe7t")
-animation = &"awake"
+animation = &"run"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1600159435]
