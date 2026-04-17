@@ -46,8 +46,12 @@ func is_outside_right_edge() -> bool:
 
 func get_direction_to_claw() -> int:
 	if get_displacement_to_claw() == 0: return 0
-	return (get_displacement_to_claw()) / abs(get_displacement_to_claw())
+	return int(get_displacement_to_claw()) / abs(get_displacement_to_claw())
 
 
 func get_displacement_to_claw() -> int:
 	return int(Globals.claw.position.x) - int(position.x)
+
+
+func get_height() -> int:
+	return int(Globals.right_ground_marker.position.y - position.y) 
