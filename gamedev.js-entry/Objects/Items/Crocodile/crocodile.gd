@@ -26,6 +26,12 @@ var next_expected_bite_freeing_direction : int = 0
 var original_x : float
 
 
+enum STATE{SNAPPING, RETRACTING, WAITING}
+var state : STATE = STATE.WAITING
+
+var cooldown : float = 1
+
+
 func _ready() -> void:
 	bite_strength = max_bite_strength
 	gravity_enabled = false
@@ -33,6 +39,10 @@ func _ready() -> void:
 	is_grabable = false
 	original_x = position.x
 	detection_area.area_entered.connect(snap)
+
+
+func change_state(new_state : STATE) -> void:
+	state = new_state
 
 
 func _process(_delta: float) -> void:
@@ -63,8 +73,9 @@ func regenerate_bite_strength() -> void:
 
 
 func snap(area : Area2D) -> void:
-	if not $CooldownTimer.is_stopped(): return
+	if not state == STATE.WAITING: return
 	if area != Globals.claw.get_node('ClawArea'): return
+	change_state(STATE.SNAPPING)
 	$AnimatedSprite2D.play("bite")
 	var pos_tween : Tween = create_tween()
 	pos_tween.tween_property(self, 'position', Vector2(Globals.claw.position.x, position.y), snap_time)
@@ -77,8 +88,10 @@ func snap(area : Area2D) -> void:
 
 
 func retract():
+	change_state(STATE.RETRACTING)
 	var pos_tween : Tween = create_tween()
 	pos_tween.tween_property(self, 'position', Vector2(original_x, position.y), retract_time)
 	await pos_tween.finished
 	$AnimatedSprite2D.play("open")
-	$CooldownTimer.start()
+	await get_tree().create_timer(cooldown).timeout
+	change_state(STATE.WAITING)

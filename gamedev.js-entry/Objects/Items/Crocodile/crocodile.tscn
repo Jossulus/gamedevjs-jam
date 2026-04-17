@@ -120,7 +120,4 @@ frame_progress = 1.0
 [node name="RegenTimer" type="Timer" parent="." unique_id=1144058723]
 autostart = true
 
-[node name="CooldownTimer" type="Timer" parent="." unique_id=1791747205]
-one_shot = true
-
 [connection signal="timeout" from="RegenTimer" to="." method="regenerate_bite_strength"]
