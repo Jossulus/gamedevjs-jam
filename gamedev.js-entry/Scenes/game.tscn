@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://b7v2qb0djp0yf" path="res://Objects/Claw/claw.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://006amvov5kd0" path="res://Objects/Camera/camera.gd" id="2_1l0tm"]
-[ext_resource type="Texture2D" uid="uid://bl4t6gcprkaov" path="res://Objects/Arcade/WideArcadeBG320x180.png" id="2_wrm1d"]
+[ext_resource type="Texture2D" uid="uid://caw2nat4ssrd4" path="res://Objects/Arcade/arcadeMachineTallOnly.png" id="3_ldgsr"]
 [ext_resource type="Script" uid="uid://4gssiuyb1hh1" path="res://Objects/Drop Off Area/drop_off_area.gd" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://8autcvnmsahw" path="res://Objects/Items/Kick Robot/kick_robot.tscn" id="4_wowpa"]
-[ext_resource type="Texture2D" uid="uid://bhasyr683to64" path="res://Objects/Arcade/backgroundOnly.png" id="5_wowpa"]
 [ext_resource type="PackedScene" uid="uid://cicjyyomrjwho" path="res://Objects/Items/Wind Up Mouse/wind_up_mouse.tscn" id="6_i6g32"]
 [ext_resource type="PackedScene" uid="uid://b6ogy8x3vdcmj" path="res://Objects/Items/Crocodile/crocodile.tscn" id="8_v158k"]
 [ext_resource type="PackedScene" uid="uid://6j817gmiiuif" path="res://Objects/Items/Flying Ball/flying_ball.tscn" id="9_h4fw4"]
 [ext_resource type="AudioStream" uid="uid://dsdun4yv3ceeu" path="res://Robot_hook_main loop.ogg" id="10_ldgsr"]
+[ext_resource type="Texture2D" uid="uid://cup7a8xwk2lya" path="res://Objects/Arcade/bgOnly360x360.png" id="10_o5yvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
 size = Vector2(257, 20)
@@ -22,7 +22,7 @@ b = Vector2(225, 0)
 [node name="Game" type="Node2D" unique_id=701573237]
 
 [node name="Claw" parent="." unique_id=1480747514 node_paths=PackedStringArray("ground_position_marker", "left_boundary_marker", "right_boundary_marker", "left_ground_marker", "right_ground_marker") instance=ExtResource("1_ebmjs")]
-position = Vector2(-130, -56)
+position = Vector2(-130, -146)
 ground_position_marker = NodePath("../Boundary Markers/Ground Position")
 left_boundary_marker = NodePath("../Boundary Markers/Ground Position")
 right_boundary_marker = NodePath("../Boundary Markers/RightBoundary")
@@ -30,20 +30,25 @@ left_ground_marker = NodePath("../Boundary Markers/Left Ground Marker")
 right_ground_marker = NodePath("../Boundary Markers/RightBoundary")
 
 [node name="Camera2D" type="Camera2D" parent="Claw" unique_id=1779705703]
-zoom = Vector2(3.6, 3.6)
+zoom = Vector2(4, 4)
 limit_left = -160
-limit_top = -90
+limit_top = -180
 limit_right = 160
-limit_bottom = 90
-position_smoothing_enabled = true
+limit_bottom = 180
+limit_smoothed = true
+position_smoothing_speed = 0.0
 script = ExtResource("2_1l0tm")
 
 [node name="Arcade" type="Sprite2D" parent="." unique_id=1178266821]
 z_index = 1
-texture = ExtResource("2_wrm1d")
+texture = ExtResource("3_ldgsr")
+
+[node name="BackgroundOnly" type="Sprite2D" parent="." unique_id=1464724672]
+z_index = -1
+texture = ExtResource("10_o5yvi")
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1947102252]
-position = Vector2(30, 55)
+position = Vector2(30, 146)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=941247980]
@@ -53,13 +58,13 @@ shape = SubResource("RectangleShape2D_3dryh")
 [node name="Boundary Markers" type="Node2D" parent="." unique_id=404173384]
 
 [node name="Ground Position" type="Marker2D" parent="Boundary Markers" unique_id=82896138]
-position = Vector2(-130, 29)
+position = Vector2(-130, 121)
 
 [node name="RightBoundary" type="Marker2D" parent="Boundary Markers" unique_id=720215480]
-position = Vector2(130, 45)
+position = Vector2(130, 136)
 
 [node name="Left Ground Marker" type="Marker2D" parent="Boundary Markers" unique_id=1288797206]
-position = Vector2(-87, 45)
+position = Vector2(-87, 136)
 
 [node name="DropOffArea" type="Area2D" parent="." unique_id=1117991140]
 collision_mask = 3
@@ -67,14 +72,10 @@ script = ExtResource("4_3dryh")
 metadata/_custom_type_script = "uid://4gssiuyb1hh1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropOffArea" unique_id=1932202158]
-position = Vector2(-121, 63)
+position = Vector2(-121, 157)
 shape = SubResource("WorldBoundaryShape2D_wowpa")
 
 [node name="KickRobot" parent="." unique_id=843346967 instance=ExtResource("4_wowpa")]
-
-[node name="BackgroundOnly" type="Sprite2D" parent="." unique_id=1464724672]
-z_index = -1
-texture = ExtResource("5_wowpa")
 
 [node name="WindUpMouse" parent="." unique_id=1021702830 instance=ExtResource("6_i6g32")]
 

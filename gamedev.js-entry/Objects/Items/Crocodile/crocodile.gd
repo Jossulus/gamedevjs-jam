@@ -71,6 +71,7 @@ func snap(area : Area2D) -> void:
 	await pos_tween.finished
 	if position.distance_to(Globals.claw.position) <= snap_radius:
 		Globals.claw.is_snapped_by_crocodile = true
+		Globals.apply_cam_shake(20)
 	else:
 		retract()
 
