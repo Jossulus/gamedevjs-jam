@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*uid://bdm3dhw27yg7n"
+ScoreKeeper="*uid://dmqlfy550qeyw"
 
 [input]
 

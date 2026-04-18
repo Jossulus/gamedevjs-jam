@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bb8nyl53d6o5q"]
+
+[ext_resource type="Script" uid="uid://dkq4hoaydelmk" path="res://Objects/Items/item_data.gd" id="1_njo3y"]
+
+[resource]
+script = ExtResource("1_njo3y")
+name = "Flying Ball"
+metadata/_custom_type_script = "uid://dkq4hoaydelmk"

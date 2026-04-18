@@ -70,6 +70,7 @@ func change_input(new_input : INPUT) -> void:
 		INPUT.FREE:
 			velocity.y = 0
 		INPUT.DOWN:
+			ScoreKeeper.state = ScoreKeeper.STATE.PLAYING
 			velocity.x = 0
 			velocity.y = down_speed
 		INPUT.UP:
@@ -136,6 +137,7 @@ func handle_free() -> void:
 
 func handle_down() -> void:
 	if position.y >= ground_position_marker.position.y:
+		velocity.x = get_claw_input_direction().x * speed
 		velocity += push_velocity
 		change_input(INPUT.UP)
 

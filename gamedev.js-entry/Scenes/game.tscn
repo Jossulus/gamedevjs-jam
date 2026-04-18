@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://2q1j8jt3cft6"]
 
 [ext_resource type="PackedScene" uid="uid://b7v2qb0djp0yf" path="res://Objects/Claw/claw.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://cb462ur5ck5dj" path="res://Scenes/game.gd" id="1_rfjv2"]
 [ext_resource type="Script" uid="uid://006amvov5kd0" path="res://Objects/Camera/camera.gd" id="2_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://caw2nat4ssrd4" path="res://Objects/Arcade/arcadeMachineTallOnly.png" id="3_ldgsr"]
 [ext_resource type="Script" uid="uid://4gssiuyb1hh1" path="res://Objects/Drop Off Area/drop_off_area.gd" id="4_3dryh"]
@@ -10,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://6j817gmiiuif" path="res://Objects/Items/Flying Ball/flying_ball.tscn" id="9_h4fw4"]
 [ext_resource type="AudioStream" uid="uid://dsdun4yv3ceeu" path="res://Robot_hook_main loop.ogg" id="10_ldgsr"]
 [ext_resource type="Texture2D" uid="uid://cup7a8xwk2lya" path="res://Objects/Arcade/bgOnly360x360.png" id="10_o5yvi"]
+[ext_resource type="FontFile" uid="uid://d1p5x37gaj0ka" path="res://Fonts/Pix32.ttf" id="11_o5yvi"]
+[ext_resource type="Script" uid="uid://bavw2nd40pc17" path="res://Objects/Time Display/time_display.gd" id="12_rku1e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
 size = Vector2(257, 20)
@@ -20,6 +23,7 @@ size = Vector2(257, 20)
 b = Vector2(225, 0)
 
 [node name="Game" type="Node2D" unique_id=701573237]
+script = ExtResource("1_rfjv2")
 
 [node name="Claw" parent="." unique_id=1480747514 node_paths=PackedStringArray("ground_position_marker", "left_boundary_marker", "right_boundary_marker", "left_ground_marker", "right_ground_marker") instance=ExtResource("1_ebmjs")]
 position = Vector2(-130, -146)
@@ -98,3 +102,14 @@ shape = SubResource("SegmentShape2D_v158k")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=771398351]
 stream = ExtResource("10_ldgsr")
 autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1716622467]
+
+[node name="Time Display" type="Label" parent="CanvasLayer" unique_id=1513007295]
+offset_left = 1112.0
+offset_right = 1152.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("11_o5yvi")
+text = "0s"
+horizontal_alignment = 2
+script = ExtResource("12_rku1e")

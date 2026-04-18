@@ -2,12 +2,7 @@
 
 [ext_resource type="Script" uid="uid://udo1yh5ywxxi" path="res://Objects/Items/Flying Ball/flying_ball.gd" id="1_8wjdp"]
 [ext_resource type="Texture2D" uid="uid://chbgjl6xsslis" path="res://Objects/Items/Flying Ball/flyingBall.png" id="2_5w62g"]
-[ext_resource type="Script" uid="uid://dkq4hoaydelmk" path="res://Objects/Items/item_data.gd" id="2_qd5iq"]
-
-[sub_resource type="Resource" id="Resource_4no36"]
-script = ExtResource("2_qd5iq")
-name = "FlyingBall"
-metadata/_custom_type_script = "uid://dkq4hoaydelmk"
+[ext_resource type="Resource" uid="uid://bb8nyl53d6o5q" path="res://Objects/Items/Flying Ball/Flying Ball.tres" id="2_qd5iq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qd5iq"]
 atlas = ExtResource("2_5w62g")
@@ -114,7 +109,7 @@ radius = 7.0
 [node name="FlyingBall" type="CharacterBody2D" unique_id=2066199596]
 collision_layer = 2
 script = ExtResource("1_8wjdp")
-item_data = SubResource("Resource_4no36")
+item_data = ExtResource("2_qd5iq")
 metadata/_custom_type_script = "uid://udo1yh5ywxxi"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1210998209]

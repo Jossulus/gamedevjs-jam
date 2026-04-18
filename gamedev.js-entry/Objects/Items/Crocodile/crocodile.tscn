@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://buf3vdmq4hyux" path="res://Objects/Items/Crocodile/crocodile.gd" id="1_e1e3o"]
 [ext_resource type="Texture2D" uid="uid://bj55dda8pxhoa" path="res://Objects/Items/Crocodile/crocodile.png" id="2_74t2j"]
+[ext_resource type="Resource" uid="uid://dvab5p05ehv7y" path="res://Objects/Items/Crocodile/crocodile.tres" id="2_dsoq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74t2j"]
 
@@ -105,6 +106,7 @@ animations = [{
 [node name="Crocodile" type="CharacterBody2D" unique_id=1707630846]
 script = ExtResource("1_e1e3o")
 bite_strength_regen_per_s = 10.0
+item_data = ExtResource("2_dsoq6")
 metadata/_custom_type_script = "uid://buf3vdmq4hyux"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1265510874]

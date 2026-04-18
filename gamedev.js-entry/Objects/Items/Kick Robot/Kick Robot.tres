@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://d4ju3s61wvmbn"]
+
+[ext_resource type="Script" uid="uid://dkq4hoaydelmk" path="res://Objects/Items/item_data.gd" id="1_42c2o"]
+
+[resource]
+script = ExtResource("1_42c2o")
+name = "Kick Robot"
+metadata/_custom_type_script = "uid://dkq4hoaydelmk"
