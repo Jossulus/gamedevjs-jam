@@ -2,10 +2,13 @@ extends Item
 class_name FlyingBall
 
 
-@export var full_thrust : float = 1850
+@export var full_thrust : float = 500
 
 
 @export var push_range : int = 20
+
+
+@export var max_speed : int = 60
 
 
 
@@ -16,7 +19,7 @@ func _physics_process(delta: float) -> void:
 		var dir : Vector2 = calculate_accel_direction_fastest(position, velocity, Globals.claw.position, full_thrust)
 		velocity += dir*full_thrust*delta
 		rotation = dir.angle() + PI/2
-	apply_gravity()
+	apply_gravity(0.2)
 	if position.distance_to(Globals.claw.position) < push_range:
 		Globals.claw.push(position.direction_to(Globals.claw.position), int(velocity.length()))
 		velocity -= position.direction_to(Globals.claw.position)*velocity.length()
@@ -29,6 +32,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -10
 	if dropped_into_box:
 		velocity.x = 0
+	if velocity.length() > max_speed:
+		velocity = velocity.normalized() * max_speed
 	move_and_slide()
 
 
@@ -50,7 +55,7 @@ func calculate_accel_direction_fastest(
 	tol: float = 0.001
 ) -> Vector2:
 	var dp: Vector2 = p1 - p0
-	var g: Vector2 = get_gravity()
+	var g: Vector2 = get_gravity()*0.2
 
 	var t_min: float = 0.0001
 	var t_max: float = 10.0
