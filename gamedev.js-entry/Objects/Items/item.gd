@@ -18,6 +18,9 @@ var is_grabable : bool = true
 var gravity_enabled : bool = true
 
 
+var push_velocity : Vector2
+
+
 func _ready() -> void:
 	assert(item_data, 'No item_data.')
 
@@ -58,3 +61,12 @@ func get_displacement_to_claw() -> int:
 
 func get_height() -> int:
 	return int(Globals.right_ground_marker.position.y - position.y) 
+
+
+func apply_push() -> void:
+	velocity += push_velocity * get_physics_process_delta_time()
+	push_velocity = lerp(push_velocity, Vector2.ZERO, 1 - exp(-10 * get_physics_process_delta_time()))
+
+
+func push(direction : Vector2, strength : int) -> void:
+	push_velocity += direction * strength
