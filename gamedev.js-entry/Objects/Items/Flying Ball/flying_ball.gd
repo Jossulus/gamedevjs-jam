@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	if position.distance_to(Globals.claw.position) < push_range:
 		Globals.claw.push(position.direction_to(Globals.claw.position), int(velocity.length()))
 		velocity -= position.direction_to(Globals.claw.position)*velocity.length()
-	
+	apply_push()
 	if is_outside_left_edge():
 		velocity.x = 10
 	elif is_outside_right_edge():

@@ -41,6 +41,9 @@ var push_velocity : Vector2
 var is_snapped_by_crocodile : bool = false
 
 
+var items_in_push_area : Array[Item] = []
+
+
 
 func set_global_variables() -> void:
 	Globals.claw = self
@@ -208,3 +211,25 @@ func push(direction : Vector2, strength : int) -> void:
 	push_velocity += direction.normalized() * strength
 	Globals.apply_cam_shake(strength)
 	drop()
+
+
+func add_item_to_push_area(body : Node2D) -> void:
+	if not body is Item: return
+	items_in_push_area.append(body)
+
+
+func remove_item_from_push_area(body : Node2D) -> void:
+	if not body is Item: return
+	items_in_push_area.erase(body)
+
+
+func push_ability() -> void:
+	for item in items_in_push_area:
+		item.push(position.direction_to(item.position), 50000)
+	$PushAbilityCooldown.start()
+
+
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("push_ability") and $PushAbilityCooldown.is_stopped():
+		push_ability()

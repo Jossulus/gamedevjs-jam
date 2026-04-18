@@ -21,8 +21,6 @@ var jump_height : int: get = get_jump_height
 
 @export var max_jump_height : int = 30
 
-var push_velocity : Vector2
-
 
 var push_velocity_length_cutoff : int = 5
 
@@ -109,23 +107,24 @@ func _physics_process(delta: float) -> void:
 				
 				push_velocity = lerp(push_velocity, Vector2.ZERO, 1 - exp(-10 * delta))
 	apply_gravity()
+	apply_push()
 	if is_outside_left_edge():
 		velocity.x = 1
+		position.x = Globals.left_ground_marker.position.x + 1
 	elif is_outside_right_edge():
 		velocity.x = -1
+		position.x = Globals.right_ground_marker.position.x - 1
 	if is_grabbed:
 		velocity = Vector2.ZERO
+	if !is_above_floor():
+		position.y = Globals.right_ground_marker.position.y - 1
 	move_and_slide()
 
 
+func is_above_floor() -> bool:
+	return position.y + velocity.y*get_physics_process_delta_time() < Globals.right_ground_marker.position.y
 
 
 func new_wander_interval() -> void:
 	direction = randi_range(-1, 1)
 	interval_timer.start(randf_range(wander_interval_min, wander_interval_max))
-
-
-
-
-func push(_direction : Vector2, strength : int) -> void:
-	push_velocity += _direction.normalized() * strength

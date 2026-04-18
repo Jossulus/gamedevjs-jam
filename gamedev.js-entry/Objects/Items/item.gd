@@ -28,6 +28,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if gravity_enabled: apply_gravity()
 	move_and_slide()
+	apply_push()
 
 
 func apply_gravity(gravity_multiplier : float = 1) -> void:
@@ -69,4 +70,4 @@ func apply_push() -> void:
 
 
 func push(direction : Vector2, strength : int) -> void:
-	push_velocity += direction * strength
+	push_velocity += direction.normalized() * strength

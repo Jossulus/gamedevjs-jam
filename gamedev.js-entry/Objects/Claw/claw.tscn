@@ -132,6 +132,9 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kk55d"]
+radius = 64.28063
+
 [node name="Claw" type="CharacterBody2D" unique_id=2134338924 node_paths=PackedStringArray("claw_sprite", "claw_grab_position_marker")]
 script = ExtResource("1_mys5a")
 claw_sprite = NodePath("ClawSprite")
@@ -157,4 +160,16 @@ frame_progress = 1.0
 [node name="ClawGrabPosition" type="Marker2D" parent="." unique_id=813410649]
 position = Vector2(0, 9)
 
+[node name="PushAbilityArea" type="Area2D" parent="." unique_id=946119900]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PushAbilityArea" unique_id=1744967415]
+shape = SubResource("CircleShape2D_kk55d")
+
+[node name="PushAbilityCooldown" type="Timer" parent="." unique_id=2125888935]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="ClawArea" to="." method="grab"]
+[connection signal="body_entered" from="PushAbilityArea" to="." method="add_item_to_push_area"]
+[connection signal="body_exited" from="PushAbilityArea" to="." method="remove_item_from_push_area"]
