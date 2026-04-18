@@ -181,6 +181,7 @@ func drop() -> void:
 	if grabbed_item:
 		grabbed_item.reparent(get_tree().root.get_node("Game"))
 		grabbed_item.is_grabbed = false
+		claw_sprite.play('open')
 	grabbed_item = null
 
 
