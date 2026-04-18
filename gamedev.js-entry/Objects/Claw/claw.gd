@@ -117,6 +117,10 @@ func is_outside_right_edge() -> bool:
 	return position.x + velocity.x * get_physics_process_delta_time() > right_boundary_marker.position.x
 
 
+func is_outside_left_ground() -> bool:
+	return position.x + velocity.x * get_physics_process_delta_time() < left_ground_marker.position.x
+
+
 func is_above_ground() -> bool:
 	return position.y > ground_position_marker.position.y
 	
@@ -134,15 +138,18 @@ func handle_idle() -> void:
 func handle_free() -> void:
 	velocity.x = get_claw_input_direction().x * speed
 	
-	if Input.is_action_just_pressed("claw_trigger"):
+	if Input.is_action_just_pressed("claw_trigger") and not is_outside_left_ground():
 		change_input(INPUT.DOWN)
 
 
 func handle_down() -> void:
 	if position.y >= ground_position_marker.position.y:
-		velocity.x = get_claw_input_direction().x * speed
-		velocity += push_velocity
 		change_input(INPUT.UP)
+	
+	velocity.x = get_claw_input_direction().x * speed
+	if is_outside_left_ground():
+		velocity.x = 1
+		position.x = left_ground_marker.position.x + 1
 
 
 func handle_up() -> void:
@@ -151,6 +158,10 @@ func handle_up() -> void:
 	velocity.y = get_claw_input_direction().y * v_speed
 	
 	velocity += push_velocity
+	
+	if is_outside_left_ground():
+		velocity.x = 1
+		position.x = left_ground_marker.position.x + 1
 	
 	if position.y <= returned_position.y:
 		if grabbed_item:
