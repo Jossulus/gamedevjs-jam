@@ -30,7 +30,7 @@ left_ground_marker = NodePath("../Boundary Markers/Left Ground Marker")
 right_ground_marker = NodePath("../Boundary Markers/RightBoundary")
 
 [node name="Camera2D" type="Camera2D" parent="Claw" unique_id=1779705703]
-zoom = Vector2(4, 4)
+zoom = Vector2(3.6, 3.6)
 limit_left = -160
 limit_top = -180
 limit_right = 160
