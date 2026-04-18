@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bafahatgn5d0d"]
+
+[ext_resource type="PackedScene" uid="uid://b7v2qb0djp0yf" path="res://Objects/Claw/claw.tscn" id="1_6o3b0"]
+[ext_resource type="Script" uid="uid://006amvov5kd0" path="res://Objects/Camera/camera.gd" id="2_t3glp"]
+[ext_resource type="Texture2D" uid="uid://caw2nat4ssrd4" path="res://Objects/Arcade/arcadeMachineTallOnly.png" id="3_jm26k"]
+[ext_resource type="Texture2D" uid="uid://cup7a8xwk2lya" path="res://Objects/Arcade/bgOnly360x360.png" id="4_38mqk"]
+[ext_resource type="Script" uid="uid://4gssiuyb1hh1" path="res://Objects/Drop Off Area/drop_off_area.gd" id="5_vqdey"]
+[ext_resource type="AudioStream" uid="uid://dsdun4yv3ceeu" path="res://Robot_hook_main loop.ogg" id="6_ypn2w"]
+[ext_resource type="FontFile" uid="uid://d1p5x37gaj0ka" path="res://Fonts/Pix32.ttf" id="7_0hi5t"]
+[ext_resource type="Script" uid="uid://bavw2nd40pc17" path="res://Objects/Time Display/time_display.gd" id="8_oa4hg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbpvm"]
+size = Vector2(257, 20)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_llc12"]
+
+[node name="LevelTemplate" type="Node2D" unique_id=1003085519]
+
+[node name="Claw" parent="." unique_id=2134338924 node_paths=PackedStringArray("ground_position_marker", "left_boundary_marker", "right_boundary_marker", "left_ground_marker", "right_ground_marker") instance=ExtResource("1_6o3b0")]
+position = Vector2(-130, -146)
+ground_position_marker = NodePath("../Boundary Markers/Ground Position")
+left_boundary_marker = NodePath("../Boundary Markers/Ground Position")
+right_boundary_marker = NodePath("../Boundary Markers/RightBoundary")
+left_ground_marker = NodePath("../Boundary Markers/Left Ground Marker")
+right_ground_marker = NodePath("../Boundary Markers/RightBoundary")
+
+[node name="Camera2D" type="Camera2D" parent="Claw" unique_id=853081181]
+zoom = Vector2(3.6, 3.6)
+limit_left = -160
+limit_top = -180
+limit_right = 160
+limit_bottom = 180
+limit_smoothed = true
+position_smoothing_speed = 0.0
+script = ExtResource("2_t3glp")
+
+[node name="Arcade" type="Sprite2D" parent="." unique_id=1607300428]
+z_index = 1
+texture = ExtResource("3_jm26k")
+
+[node name="BackgroundOnly" type="Sprite2D" parent="." unique_id=412437071]
+z_index = -1
+texture = ExtResource("4_38mqk")
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=381216558]
+position = Vector2(30, 146)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=956405644]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_rbpvm")
+
+[node name="Boundary Markers" type="Node2D" parent="." unique_id=1945557391]
+
+[node name="Ground Position" type="Marker2D" parent="Boundary Markers" unique_id=1720810824]
+position = Vector2(-130, 121)
+
+[node name="RightBoundary" type="Marker2D" parent="Boundary Markers" unique_id=1738084967]
+position = Vector2(130, 136)
+
+[node name="Left Ground Marker" type="Marker2D" parent="Boundary Markers" unique_id=1343855334]
+position = Vector2(-87, 136)
+
+[node name="DropOffArea" type="Area2D" parent="." unique_id=274721044]
+collision_mask = 3
+script = ExtResource("5_vqdey")
+metadata/_custom_type_script = "uid://4gssiuyb1hh1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropOffArea" unique_id=2023383444]
+position = Vector2(-121, 157)
+shape = SubResource("WorldBoundaryShape2D_llc12")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=388683150]
+stream = ExtResource("6_ypn2w")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1332706290]
+
+[node name="Time Display" type="Label" parent="CanvasLayer" unique_id=1100372604]
+offset_left = 1112.0
+offset_right = 1152.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("7_0hi5t")
+text = "0s"
+horizontal_alignment = 2
+script = ExtResource("8_oa4hg")
+metadata/_edit_use_anchors_ = true
