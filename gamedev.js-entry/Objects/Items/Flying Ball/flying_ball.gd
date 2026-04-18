@@ -27,6 +27,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = -10
 	if is_on_floor():
 		velocity.y = -10
+	if dropped_into_box:
+		velocity.x = 0
 	move_and_slide()
 
 

@@ -65,7 +65,7 @@ func change_input(new_input : INPUT) -> void:
 	input = new_input
 	match input:
 		INPUT.IDLE:
-			drop()
+			drop(true)
 			claw_sprite.play('open')
 		INPUT.FREE:
 			velocity.y = 0
@@ -179,11 +179,12 @@ func grab(item : Node2D) -> void:
 	change_input(INPUT.UP)
 
 
-func drop() -> void:
+func drop(into_box : bool = false) -> void:
 	if grabbed_item:
 		grabbed_item.reparent(get_tree().root.get_node("Game"))
 		grabbed_item.is_grabbed = false
 		claw_sprite.play('open')
+		grabbed_item.dropped_into_box = into_box
 	grabbed_item = null
 
 

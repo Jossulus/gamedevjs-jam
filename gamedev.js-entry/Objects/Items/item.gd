@@ -2,6 +2,9 @@ extends CharacterBody2D
 class_name Item
 
 
+var dropped_into_box : bool = false
+
+
 var is_grabbed : bool = false
 
 var initial_drop_speed : int = 80
