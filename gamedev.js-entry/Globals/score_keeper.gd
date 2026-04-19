@@ -37,6 +37,8 @@ var drop_off_area : DropOffArea:
 		drop_off_area = new
 
 
+signal state_changed(new_state: STATE)
+
 enum STATE{IDLE, QUEST_GIVING, QUEST_COMPLETED, PLAYING}
 var state : STATE = STATE.IDLE: set = change_state
 
@@ -53,6 +55,7 @@ func change_state(new_state : STATE) -> void:
 			time_display.text = str(round_time_limit) + 's'
 		STATE.PLAYING:
 			start(round_time_limit)
+	state_changed.emit(state)
 
 
 func _on_quest_completed() -> void:
