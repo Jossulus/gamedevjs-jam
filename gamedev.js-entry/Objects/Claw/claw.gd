@@ -45,6 +45,7 @@ var items_in_push_area : Array[Item] = []
 
 
 
+
 func set_global_variables() -> void:
 	Globals.claw = self
 	Globals.ground_position_marker = ground_position_marker
@@ -175,6 +176,7 @@ func handle_return() -> void:
 
 
 func grab(item : Node2D) -> void:
+	if claw_sprite.is_playing(): return
 	if is_snapped_by_crocodile: return
 	if not (input == INPUT.DOWN or input == INPUT.UP): return
 	if not item is Item: return
@@ -195,7 +197,7 @@ func grab(item : Node2D) -> void:
 
 func drop(into_box : bool = false) -> void:
 	if grabbed_item:
-		grabbed_item.reparent(get_tree().root.get_node("Game"))
+		grabbed_item.reparent.call_deferred(Globals.level_node)
 		grabbed_item.is_grabbed = false
 		claw_sprite.play('open')
 		grabbed_item.dropped_into_box = into_box
@@ -241,6 +243,6 @@ func push_ability() -> void:
 
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("push_ability") and $PushAbilityCooldown.is_stopped():
 		push_ability()

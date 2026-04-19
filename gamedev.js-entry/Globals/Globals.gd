@@ -17,5 +17,8 @@ var claw : Claw
 var cam : Camera2D
 
 
+var level_node : Node2D
+
+
 func apply_cam_shake(strength : float):
 	cam.add_trauma(strength)

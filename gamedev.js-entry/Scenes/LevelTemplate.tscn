@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bafahatgn5d0d"]
 
 [ext_resource type="PackedScene" uid="uid://b7v2qb0djp0yf" path="res://Objects/Claw/claw.tscn" id="1_6o3b0"]
+[ext_resource type="Script" uid="uid://cai30qlmal16s" path="res://Objects/LevelNode/level_node.gd" id="1_jm26k"]
 [ext_resource type="Script" uid="uid://006amvov5kd0" path="res://Objects/Camera/camera.gd" id="2_t3glp"]
 [ext_resource type="Texture2D" uid="uid://caw2nat4ssrd4" path="res://Objects/Arcade/arcadeMachineTallOnly.png" id="3_jm26k"]
 [ext_resource type="Texture2D" uid="uid://cup7a8xwk2lya" path="res://Objects/Arcade/bgOnly360x360.png" id="4_38mqk"]
@@ -14,7 +15,9 @@ size = Vector2(257, 20)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_llc12"]
 
-[node name="LevelTemplate" type="Node2D" unique_id=1003085519]
+[node name="LevelTemplate" type="Node2D" unique_id=909966403]
+script = ExtResource("1_jm26k")
+metadata/_custom_type_script = "uid://cai30qlmal16s"
 
 [node name="Claw" parent="." unique_id=2134338924 node_paths=PackedStringArray("ground_position_marker", "left_boundary_marker", "right_boundary_marker", "left_ground_marker", "right_ground_marker") instance=ExtResource("1_6o3b0")]
 position = Vector2(-130, -146)
