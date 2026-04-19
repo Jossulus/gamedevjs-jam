@@ -182,6 +182,7 @@ func grab(item : Node2D) -> void:
 	if not item is Item: return
 	if not item.is_grabable: return
 	if grabbed_item: return
+	if !item: return
 	
 	grabbed_item = item
 	var update_position_function : Callable = func():
