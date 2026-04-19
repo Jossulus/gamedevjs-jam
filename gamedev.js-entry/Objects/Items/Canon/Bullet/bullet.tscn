@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://db3s4pnf7748w"]
+
+[ext_resource type="Script" uid="uid://08vpx6vut3ky" path="res://Objects/Items/Canon/Bullet/bullet.gd" id="1_m0k43"]
+[ext_resource type="Texture2D" uid="uid://b36qc2e6ase18" path="res://Objects/Items/Canon/Bullet/bullet.png" id="2_luq7g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m0k43"]
+
+[node name="Bullet" type="CharacterBody2D" unique_id=1305908479]
+scale = Vector2(0.44, 0.44)
+collision_layer = 0
+script = ExtResource("1_m0k43")
+speed = 200
+metadata/_custom_type_script = "uid://08vpx6vut3ky"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=434771858]
+shape = SubResource("CircleShape2D_m0k43")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=200372381]
+texture = ExtResource("2_luq7g")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=279385512]
+
+[node name="BulletDetection" type="Area2D" parent="." unique_id=761944706]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BulletDetection" unique_id=1054860962]
+shape = SubResource("CircleShape2D_m0k43")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]
+[connection signal="area_entered" from="BulletDetection" to="." method="hit"]
