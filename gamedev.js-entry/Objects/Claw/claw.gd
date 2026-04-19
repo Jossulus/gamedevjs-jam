@@ -184,8 +184,8 @@ func grab(item : Node2D) -> void:
 	if grabbed_item: return
 	
 	grabbed_item = item
-	grabbed_item.call_deferred("reparent", self)
 	var update_position_function : Callable = func():
+		grabbed_item.reparent(self)
 		grabbed_item.position = claw_grab_position_marker.position
 	update_position_function.call_deferred()
 	grabbed_item.is_grabbed = true
