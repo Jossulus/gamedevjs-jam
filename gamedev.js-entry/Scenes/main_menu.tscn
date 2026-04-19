@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene format=3 uid="uid://bqwav0f7ltn2s"]
 
-[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1"]
+[ext_resource type="Script" uid="uid://bk33k711o1obl" path="res://Scenes/main_menu.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://caw2nat4ssrd4" path="res://Objects/Arcade/arcadeMachineTallOnly.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://cup7a8xwk2lya" path="res://Objects/Arcade/bgOnly360x360.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://kup2501xosu4" path="res://Objects/Claw/Claw1.png" id="4"]
@@ -8,6 +8,18 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_claw"]
 atlas = ExtResource("4")
 region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_title_bg"]
+bg_color = Color(0, 0, 0, 0.65)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.9, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_normal"]
 bg_color = Color(0.8, 0.15, 0.15, 1)
@@ -33,18 +45,6 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_title_bg"]
-bg_color = Color(0, 0, 0, 0.65)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.9, 0.3, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_audio_bg"]
 bg_color = Color(0, 0, 0, 0.65)
 border_width_left = 2
@@ -57,32 +57,32 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Node2D" unique_id=1474816060]
 script = ExtResource("1")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=648288142]
 zoom = Vector2(4, 4)
 limit_left = -160
 limit_top = -180
 limit_right = 160
 limit_bottom = 180
 
-[node name="BackgroundOnly" type="Sprite2D" parent="."]
+[node name="BackgroundOnly" type="Sprite2D" parent="." unique_id=753656246]
 z_index = -1
 texture = ExtResource("3")
 
-[node name="Arcade" type="Sprite2D" parent="."]
+[node name="Arcade" type="Sprite2D" parent="." unique_id=2126778470]
 z_index = 1
 texture = ExtResource("2")
 
-[node name="ClawSprite" type="Sprite2D" parent="."]
+[node name="ClawSprite" type="Sprite2D" parent="." unique_id=1748602166]
 z_index = 2
 position = Vector2(-130, -146)
 texture = SubResource("AtlasTexture_claw")
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1384884394]
 
-[node name="UI" type="Control" parent="UILayer"]
+[node name="UI" type="Control" parent="UILayer" unique_id=634703691]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,7 +91,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="UILayer/UI"]
+[node name="CenterContainer" type="CenterContainer" parent="UILayer/UI" unique_id=1416244479]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,17 +99,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UI/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UI/CenterContainer" unique_id=2052423119]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="TitlePanel" type="PanelContainer" parent="UILayer/UI/CenterContainer/VBoxContainer"]
+[node name="TitlePanel" type="PanelContainer" parent="UILayer/UI/CenterContainer/VBoxContainer" unique_id=265044203]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_title_bg")
 
-[node name="TitleLabel" type="Label" parent="UILayer/UI/CenterContainer/VBoxContainer/TitlePanel"]
+[node name="TitleLabel" type="Label" parent="UILayer/UI/CenterContainer/VBoxContainer/TitlePanel" unique_id=397601589]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -119,11 +119,11 @@ text = "CLAW MACHINE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer" type="Control" parent="UILayer/UI/CenterContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="UILayer/UI/CenterContainer/VBoxContainer" unique_id=1115828677]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="UILayer/UI/CenterContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="UILayer/UI/CenterContainer/VBoxContainer" unique_id=371658951]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -132,12 +132,12 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
 text = "INSERT COIN"
 
-[node name="QuitButton" type="Button" parent="UILayer/UI/CenterContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="UILayer/UI/CenterContainer/VBoxContainer" unique_id=729855685]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -146,14 +146,14 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
 text = "QUIT"
 
-[node name="AudioPanel" type="PanelContainer" parent="UILayer/UI"]
+[node name="AudioPanel" type="PanelContainer" parent="UILayer/UI" unique_id=2127340493]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -166,15 +166,15 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_audio_bg")
 
-[node name="VBox" type="VBoxContainer" parent="UILayer/UI/AudioPanel"]
+[node name="VBox" type="VBoxContainer" parent="UILayer/UI/AudioPanel" unique_id=2102641325]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="MusicRow" type="HBoxContainer" parent="UILayer/UI/AudioPanel/VBox"]
+[node name="MusicRow" type="HBoxContainer" parent="UILayer/UI/AudioPanel/VBox" unique_id=803539927]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="MusicLabel" type="Label" parent="UILayer/UI/AudioPanel/VBox/MusicRow"]
+[node name="MusicLabel" type="Label" parent="UILayer/UI/AudioPanel/VBox/MusicRow" unique_id=1220221110]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
@@ -182,21 +182,19 @@ theme_override_font_sizes/font_size = 16
 text = "MUSIC"
 vertical_alignment = 1
 
-[node name="MusicSlider" type="HSlider" parent="UILayer/UI/AudioPanel/VBox/MusicRow"]
+[node name="MusicSlider" type="HSlider" parent="UILayer/UI/AudioPanel/VBox/MusicRow" unique_id=1169144229]
 custom_minimum_size = Vector2(120, 20)
 layout_mode = 2
-min_value = 0.0
 max_value = 4.0
-step = 1.0
 value = 4.0
 tick_count = 5
 ticks_on_borders = true
 
-[node name="SoundRow" type="HBoxContainer" parent="UILayer/UI/AudioPanel/VBox"]
+[node name="SoundRow" type="HBoxContainer" parent="UILayer/UI/AudioPanel/VBox" unique_id=1986443396]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="SoundLabel" type="Label" parent="UILayer/UI/AudioPanel/VBox/SoundRow"]
+[node name="SoundLabel" type="Label" parent="UILayer/UI/AudioPanel/VBox/SoundRow" unique_id=1862522182]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
@@ -204,12 +202,10 @@ theme_override_font_sizes/font_size = 16
 text = "SOUND"
 vertical_alignment = 1
 
-[node name="SoundSlider" type="HSlider" parent="UILayer/UI/AudioPanel/VBox/SoundRow"]
+[node name="SoundSlider" type="HSlider" parent="UILayer/UI/AudioPanel/VBox/SoundRow" unique_id=1415671373]
 custom_minimum_size = Vector2(120, 20)
 layout_mode = 2
-min_value = 0.0
 max_value = 4.0
-step = 1.0
 value = 4.0
 tick_count = 5
 ticks_on_borders = true
