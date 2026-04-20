@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b5cymb4ktr111"]
+
+[ext_resource type="Script" uid="uid://dkq4hoaydelmk" path="res://Objects/Items/item_data.gd" id="1_khvns"]
+
+[resource]
+script = ExtResource("1_khvns")
+name = "Cymbal Monkey Bot"
+metadata/_custom_type_script = "uid://dkq4hoaydelmk"

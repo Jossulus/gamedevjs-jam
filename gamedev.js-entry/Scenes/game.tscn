@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bavw2nd40pc17" path="res://Objects/Time Display/time_display.gd" id="12_rku1e"]
 [ext_resource type="PackedScene" uid="uid://im7jdvwcis06" path="res://Objects/Kid/kid.tscn" id="13_kid"]
 [ext_resource type="PackedScene" uid="uid://crpyafy65kg5a" path="res://Objects/Items/Canon/canon.tscn" id="14_1phco"]
+[ext_resource type="PackedScene" uid="uid://b5cymb4ksc111" path="res://Objects/Items/Cymbal Monkey Bot/cymbal_monkey_bot.tscn" id="15_cmb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
 size = Vector2(257, 20)
@@ -88,6 +89,8 @@ shape = SubResource("WorldBoundaryShape2D_wowpa")
 [node name="KickRobot" parent="." unique_id=843346967 instance=ExtResource("4_wowpa")]
 
 [node name="WindUpMouse" parent="." unique_id=1021702830 instance=ExtResource("6_i6g32")]
+
+[node name="CymbalMonkeyBot" parent="." instance=ExtResource("15_cmb")]
 
 [node name="Crocodile" parent="." unique_id=1707630846 node_paths=PackedStringArray("detection_area") instance=ExtResource("8_v158k")]
 position = Vector2(-85, 0)
