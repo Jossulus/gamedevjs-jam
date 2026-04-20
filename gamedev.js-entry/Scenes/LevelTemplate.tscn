@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://006amvov5kd0" path="res://Objects/Camera/camera.gd" id="2_t3glp"]
 [ext_resource type="Texture2D" uid="uid://caw2nat4ssrd4" path="res://Objects/Arcade/arcadeMachineTallOnly.png" id="3_jm26k"]
 [ext_resource type="Texture2D" uid="uid://cup7a8xwk2lya" path="res://Objects/Arcade/bgOnly360x360.png" id="4_38mqk"]
+[ext_resource type="PackedScene" uid="uid://bm2c231bjayvm" path="res://Objects/Claw/Clawbase/clawbase.tscn" id="4_jm26k"]
 [ext_resource type="Script" uid="uid://4gssiuyb1hh1" path="res://Objects/Drop Off Area/drop_off_area.gd" id="5_vqdey"]
 [ext_resource type="AudioStream" uid="uid://dsdun4yv3ceeu" path="res://Robot_hook_main loop.ogg" id="6_ypn2w"]
 [ext_resource type="FontFile" uid="uid://d1p5x37gaj0ka" path="res://Fonts/Pix32.ttf" id="7_0hi5t"]
@@ -20,7 +21,7 @@ script = ExtResource("1_jm26k")
 metadata/_custom_type_script = "uid://cai30qlmal16s"
 
 [node name="Claw" parent="." unique_id=2134338924 node_paths=PackedStringArray("ground_position_marker", "left_boundary_marker", "right_boundary_marker", "left_ground_marker", "right_ground_marker") instance=ExtResource("1_6o3b0")]
-position = Vector2(-130, -146)
+position = Vector2(-127, -130)
 ground_position_marker = NodePath("../Boundary Markers/Ground Position")
 left_boundary_marker = NodePath("../Boundary Markers/Ground Position")
 right_boundary_marker = NodePath("../Boundary Markers/RightBoundary")
@@ -36,6 +37,9 @@ limit_bottom = 180
 limit_smoothed = true
 position_smoothing_speed = 0.0
 script = ExtResource("2_t3glp")
+
+[node name="ClawBase" parent="." unique_id=611599068 instance=ExtResource("4_jm26k")]
+position = Vector2(-128, -162)
 
 [node name="Arcade" type="Sprite2D" parent="." unique_id=1607300428]
 z_index = 1

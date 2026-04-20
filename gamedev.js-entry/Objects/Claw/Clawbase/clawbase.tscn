@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bm2c231bjayvm"]
+
+[ext_resource type="Texture2D" uid="uid://dt3csswkuexti" path="res://Objects/Claw/Clawbase/clawCableBase.png" id="1_qork4"]
+[ext_resource type="Script" uid="uid://c220likkcnvu5" path="res://Objects/Claw/Clawbase/clawbase.gd" id="1_yilys"]
+[ext_resource type="Texture2D" uid="uid://b7t3c3m4xqg8t" path="res://Objects/Claw/Clawbase/clawCable.png" id="3_if37n"]
+
+[node name="ClawBase" type="Node2D" unique_id=611599068]
+script = ExtResource("1_yilys")
+
+[node name="Cable" type="Sprite2D" parent="." unique_id=1878361572]
+position = Vector2(0, 48)
+texture = ExtResource("3_if37n")
+
+[node name="CableBase" type="Sprite2D" parent="." unique_id=898512906]
+position = Vector2(0, 32)
+texture = ExtResource("1_qork4")

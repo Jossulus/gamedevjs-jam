@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cai30qlmal16s" path="res://Objects/LevelNode/level_node.gd" id="1_1phco"]
 [ext_resource type="PackedScene" uid="uid://b7v2qb0djp0yf" path="res://Objects/Claw/claw.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://006amvov5kd0" path="res://Objects/Camera/camera.gd" id="2_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://bm2c231bjayvm" path="res://Objects/Claw/Clawbase/clawbase.tscn" id="3_ewbju"]
 [ext_resource type="Texture2D" uid="uid://caw2nat4ssrd4" path="res://Objects/Arcade/arcadeMachineTallOnly.png" id="3_ldgsr"]
 [ext_resource type="Script" uid="uid://4gssiuyb1hh1" path="res://Objects/Drop Off Area/drop_off_area.gd" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://8autcvnmsahw" path="res://Objects/Items/Kick Robot/kick_robot.tscn" id="4_wowpa"]
@@ -33,7 +34,7 @@ metadata/_custom_type_script = "uid://cai30qlmal16s"
 position = Vector2(-65, 105)
 
 [node name="Claw" parent="." unique_id=1480747514 node_paths=PackedStringArray("ground_position_marker", "left_boundary_marker", "right_boundary_marker", "left_ground_marker", "right_ground_marker") instance=ExtResource("1_ebmjs")]
-position = Vector2(-130, -146)
+position = Vector2(-127, -130)
 ground_position_marker = NodePath("../Boundary Markers/Ground Position")
 left_boundary_marker = NodePath("../Boundary Markers/Ground Position")
 right_boundary_marker = NodePath("../Boundary Markers/RightBoundary")
@@ -49,6 +50,9 @@ limit_bottom = 180
 limit_smoothed = true
 position_smoothing_speed = 0.0
 script = ExtResource("2_1l0tm")
+
+[node name="ClawBase" parent="." unique_id=611599068 instance=ExtResource("3_ewbju")]
+position = Vector2(-128, -162)
 
 [node name="Arcade" type="Sprite2D" parent="." unique_id=1178266821]
 z_index = 1
@@ -90,7 +94,7 @@ shape = SubResource("WorldBoundaryShape2D_wowpa")
 
 [node name="WindUpMouse" parent="." unique_id=1021702830 instance=ExtResource("6_i6g32")]
 
-[node name="CymbalMonkeyBot" parent="." instance=ExtResource("15_cmb")]
+[node name="CymbalMonkeyBot" parent="." unique_id=661079724 instance=ExtResource("15_cmb")]
 
 [node name="Crocodile" parent="." unique_id=1707630846 node_paths=PackedStringArray("detection_area") instance=ExtResource("8_v158k")]
 position = Vector2(-85, 0)
