@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cup7a8xwk2lya" path="res://Objects/Arcade/bgOnly360x360.png" id="10_o5yvi"]
 [ext_resource type="FontFile" uid="uid://d1p5x37gaj0ka" path="res://Fonts/Pix32.ttf" id="11_o5yvi"]
 [ext_resource type="Script" uid="uid://bavw2nd40pc17" path="res://Objects/Time Display/time_display.gd" id="12_rku1e"]
+[ext_resource type="PackedScene" uid="uid://im7jdvwcis06" path="res://Objects/Kid/kid.tscn" id="13_kid"]
 [ext_resource type="PackedScene" uid="uid://crpyafy65kg5a" path="res://Objects/Items/Canon/canon.tscn" id="14_1phco"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
@@ -26,6 +27,9 @@ b = Vector2(225, 0)
 [node name="Game" type="Node2D" unique_id=217302414]
 script = ExtResource("1_1phco")
 metadata/_custom_type_script = "uid://cai30qlmal16s"
+
+[node name="Kid" parent="." unique_id=771115630 instance=ExtResource("13_kid")]
+position = Vector2(-65, 105)
 
 [node name="Claw" parent="." unique_id=1480747514 node_paths=PackedStringArray("ground_position_marker", "left_boundary_marker", "right_boundary_marker", "left_ground_marker", "right_ground_marker") instance=ExtResource("1_ebmjs")]
 position = Vector2(-130, -146)
