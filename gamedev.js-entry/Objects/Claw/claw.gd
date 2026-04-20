@@ -215,7 +215,6 @@ func return_claw() -> void:
 			returned_position.x,
 			distance_to_returned_position / speed
 	)
-	
 	await position_tween.finished
 	change_input(INPUT.IDLE)
 

@@ -15,6 +15,11 @@ class_name FlyingBall
 
 func _physics_process(delta: float) -> void:
 	if is_grabbed: return
+	if dropped_into_box:
+		apply_gravity()
+		velocity.x = 0
+		move_and_slide()
+		return
 	if position.y > Globals.claw.position.y:
 		var dir : Vector2 = calculate_accel_direction_fastest(position, velocity, Globals.claw.position, full_thrust)
 		velocity += dir*full_thrust*delta
@@ -30,8 +35,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = -10
 	if is_on_floor():
 		velocity.y = -10
-	if dropped_into_box:
-		velocity.x = 0
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * max_speed
 	move_and_slide()
