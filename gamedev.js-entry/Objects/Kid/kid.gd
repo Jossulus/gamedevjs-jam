@@ -8,10 +8,12 @@ const ITEM_ICONS: Dictionary = {
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var bubble_icon: Sprite2D = $BubbleIcon
+@onready var talk_timer: Timer = $TalkTimer
 
 
 func _ready() -> void:
 	ScoreKeeper.state_changed.connect(_on_state_changed)
+	talk_timer.timeout.connect(func(): sprite.play("idle"))
 	_on_state_changed(ScoreKeeper.state)
 
 
@@ -19,6 +21,7 @@ func _on_state_changed(new_state: ScoreKeeper.STATE) -> void:
 	match new_state:
 		ScoreKeeper.STATE.QUEST_GIVING:
 			sprite.play("talking")
+			talk_timer.start()
 			_update_bubble_icon()
 			print("[Kid] Requesting: " + ScoreKeeper.target_item_data.name)
 		ScoreKeeper.STATE.PLAYING:
