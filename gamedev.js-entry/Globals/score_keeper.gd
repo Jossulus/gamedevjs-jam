@@ -62,6 +62,9 @@ func _on_quest_completed() -> void:
 	time_display.text = '0s'
 	stop()
 	await get_tree().create_timer(quest_completed_time).timeout
+	if possible_item_data.is_empty():
+		print("All items collected!")
+		return
 	state = STATE.QUEST_GIVING
 
 
@@ -76,8 +79,8 @@ func new_target_item_data() -> void:
 
 
 func on_item_collected(item : Item) -> void:
+	possible_item_data.erase(item.item_data)
 	if not item.item_data == target_item_data: return
-	
 	state = STATE.QUEST_COMPLETED
 	print("Right item collected.")
 
