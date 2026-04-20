@@ -4,6 +4,7 @@ const ITEM_ICONS: Dictionary = {
 	"Kick Robot": {"path": "res://Objects/Items/Kick Robot/kickRobo32.png", "region": Rect2(0, 0, 32, 32)},
 	"Wind Up Mouse": {"path": "res://Objects/Items/Wind Up Mouse/ratRobot.png", "region": Rect2(0, 0, 32, 32)},
 	"Flying Ball": {"path": "res://Objects/Items/Flying Ball/flyingBall.png", "region": Rect2(0, 0, 32, 32)},
+	"Cymbal Monkey Bot": {"path": "res://Objects/Items/Cymbal Monkey Bot/monkeyBot.png", "region": Rect2(0, 0, 32, 32)},
 }
 
 @onready var sprite: AnimatedSprite2D = $Sprite

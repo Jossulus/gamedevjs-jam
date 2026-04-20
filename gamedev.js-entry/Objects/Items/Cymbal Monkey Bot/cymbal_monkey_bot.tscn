@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://b5cymb4ksc111"]
+
+[ext_resource type="Script" uid="uid://b5cymb4kgd111" path="res://Objects/Items/Cymbal Monkey Bot/cymbal_monkey_bot.gd" id="1_cmb"]
+[ext_resource type="Texture2D" uid="uid://1cgp825teke6" path="res://Objects/Items/Cymbal Monkey Bot/monkeyBot.png" id="2_cmb"]
+[ext_resource type="Resource" uid="uid://b5cymb4ktr111" path="res://Objects/Items/Cymbal Monkey Bot/cymbal_monkey_bot.tres" id="3_cmb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmb0"]
+atlas = ExtResource("2_cmb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmb1"]
+atlas = ExtResource("2_cmb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmb2"]
+atlas = ExtResource("2_cmb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmb3"]
+atlas = ExtResource("2_cmb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmb4"]
+atlas = ExtResource("2_cmb")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cmb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmb4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmb"]
+size = Vector2(14, 15)
+
+[node name="CymbalMonkeyBot" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_cmb")
+item_data = ExtResource("3_cmb")
+metadata/_custom_type_script = "uid://b5cymb4kgd111"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cmb")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_cmb")
+
+[node name="SpurtTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true

@@ -5,6 +5,7 @@ var possible_item_data : Array[ItemData] = [
 	load("res://Objects/Items/Wind Up Mouse/wind_up_mouse.tres"),
 	load("res://Objects/Items/Kick Robot/Kick Robot.tres"),
 	load("res://Objects/Items/Flying Ball/Flying Ball.tres"),
+	load("res://Objects/Items/Cymbal Monkey Bot/cymbal_monkey_bot.tres"),
 	
 	
 	
