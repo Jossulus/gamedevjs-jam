@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://im7jdvwcis06" path="res://Objects/Kid/kid.tscn" id="13_kid"]
 [ext_resource type="PackedScene" uid="uid://crpyafy65kg5a" path="res://Objects/Items/Canon/canon.tscn" id="14_1phco"]
 [ext_resource type="PackedScene" uid="uid://b5cymb4ksc111" path="res://Objects/Items/Cymbal Monkey Bot/cymbal_monkey_bot.tscn" id="15_cmb"]
+[ext_resource type="Script" path="res://Scenes/EndScreen/end_screen.gd" id="16_endscr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
 size = Vector2(257, 20)
@@ -126,5 +127,8 @@ theme_override_fonts/font = ExtResource("11_o5yvi")
 text = "0s"
 horizontal_alignment = 2
 script = ExtResource("12_rku1e")
+
+[node name="EndScreen" type="CanvasLayer" parent="." unique_id=1234567890]
+script = ExtResource("16_endscr")
 
 [node name="Canon" parent="." unique_id=550373582 instance=ExtResource("14_1phco")]
