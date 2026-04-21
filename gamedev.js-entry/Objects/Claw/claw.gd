@@ -186,6 +186,7 @@ func grab(item : Node2D) -> void:
 	
 	grabbed_item = item
 	var update_position_function : Callable = func():
+		if grabbed_item == null: return
 		grabbed_item.reparent(self)
 		grabbed_item.position = claw_grab_position_marker.position
 	update_position_function.call_deferred()
