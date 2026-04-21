@@ -79,7 +79,10 @@ func _build_ui() -> void:
 	vbox.add_child(spacer)
 
 	var play_again := _make_button("Play Again", font)
-	play_again.pressed.connect(func(): get_tree().reload_current_scene())
+	play_again.pressed.connect(func():
+		ScoreKeeper.reset()
+		get_tree().reload_current_scene()
+	)
 	vbox.add_child(play_again)
 
 	var main_menu := _make_button("Main Menu", font)
