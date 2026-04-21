@@ -60,13 +60,26 @@ func change_state(new_state : STATE) -> void:
 			velocity.x = 0
 			$AnimatedSprite2D.play("awake")
 			await $AnimatedSprite2D.animation_finished
-			velocity.y = -sqrt((2 * get_gravity().y * jump_height)/get_physics_process_delta_time())
+			if not is_grabbed:
+				velocity.y = -sqrt((2 * get_gravity().y * jump_height)/get_physics_process_delta_time())
 		STATE.LAND:
 			$AnimatedSprite2D.play("kick")
 			push(position.direction_to(Globals.claw.position), push_strength)
 
 
 func _physics_process(delta: float) -> void:
+	if is_grabbed:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+
+	if dropped_into_box:
+		apply_gravity()
+		move_and_slide()
+		if is_on_floor():
+			dropped_into_box = false
+		return
+
 	if get_direction_to_claw() < 0:
 		$AnimatedSprite2D.flip_h = false
 	elif get_direction_to_claw() > 0:
@@ -104,7 +117,7 @@ func _physics_process(delta: float) -> void:
 					velocity = push_velocity
 				else:
 					push_velocity = Vector2.ZERO
-				
+
 				push_velocity = lerp(push_velocity, Vector2.ZERO, 1 - exp(-10 * delta))
 	apply_gravity()
 	apply_push()
@@ -114,8 +127,6 @@ func _physics_process(delta: float) -> void:
 	elif is_outside_right_edge():
 		velocity.x = -1
 		position.x = Globals.right_ground_marker.position.x - 1
-	if is_grabbed:
-		velocity = Vector2.ZERO
 	if !is_above_floor():
 		position.y = Globals.right_ground_marker.position.y - 1
 	move_and_slide()

@@ -6,10 +6,6 @@ var possible_item_data : Array[ItemData] = [
 	load("res://Objects/Items/Kick Robot/Kick Robot.tres"),
 	load("res://Objects/Items/Flying Ball/Flying Ball.tres"),
 	load("res://Objects/Items/Cymbal Monkey Bot/cymbal_monkey_bot.tres"),
-	
-	
-	
-	
 	]
 
 
@@ -32,10 +28,17 @@ func _ready() -> void:
 	timeout.connect(on_round_time_timeout)
 
 
-var drop_off_area : DropOffArea: 
-	set(new):
-		assert(not drop_off_area, "There is already a drop off area.")
-		drop_off_area = new
+var drop_off_area : DropOffArea
+
+
+func reset() -> void:
+	possible_item_data = [
+		load("res://Objects/Items/Wind Up Mouse/wind_up_mouse.tres"),
+		load("res://Objects/Items/Kick Robot/Kick Robot.tres"),
+		load("res://Objects/Items/Flying Ball/Flying Ball.tres"),
+		load("res://Objects/Items/Cymbal Monkey Bot/cymbal_monkey_bot.tres"),
+	]
+	target_item_data = null
 
 
 signal state_changed(new_state: STATE)
@@ -52,10 +55,9 @@ func change_state(new_state : STATE) -> void:
 		STATE.QUEST_GIVING:
 			new_target_item_data()
 			print("New target item is " + target_item_data.name + '.')
-			print("You have " + str(round_time_limit) + "s to collect the item.")
-			time_display.text = str(round_time_limit) + 's'
-		STATE.PLAYING:
 			start(round_time_limit)
+		STATE.PLAYING:
+			pass
 		STATE.GAME_LOST:
 			stop()
 			time_display.text = '0s'
@@ -74,8 +76,8 @@ func _on_quest_completed() -> void:
 
 func _process(_delta: float) -> void:
 	match state:
-		STATE.PLAYING:
-			time_display.text = str(time_left) + 's'
+		STATE.PLAYING, STATE.QUEST_GIVING:
+			time_display.text = str(ceil(time_left)) + 's'
 
 
 func new_target_item_data() -> void:
@@ -90,5 +92,5 @@ func on_item_collected(item : Item) -> void:
 
 
 func on_round_time_timeout() -> void:
-	if state == STATE.PLAYING:
+	if state == STATE.PLAYING or state == STATE.QUEST_GIVING:
 		state = STATE.GAME_LOST
