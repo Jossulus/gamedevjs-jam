@@ -5,6 +5,13 @@ class_name KickRobot
 enum STATE{WANDER, CHASE, JUMP, LAND}
 var state : STATE = STATE.WANDER
 
+@export_group("Sounds")
+@export var jump_sound: AudioStream
+@export var hit_sound: AudioStream
+@export var miss_sound: AudioStream
+
+@onready var sfx_player: AudioStreamPlayer2D = $SFXPlayer
+
 @export var speed : int = 20
 var direction : int = 0
 
@@ -62,6 +69,33 @@ func change_state(new_state : STATE) -> void:
 			await $AnimatedSprite2D.animation_finished
 			velocity.y = -sqrt((2 * get_gravity().y * jump_height)/get_physics_process_delta_time())
 		STATE.LAND:
+			$AnimatedSprite2D.play("kick")
+			push(position.direction_to(Globals.claw.position), push_strength)
+	match state:
+		STATE.WANDER:
+			pass
+		STATE.CHASE:
+			pass
+		STATE.JUMP:
+			pass
+		STATE.LAND:
+			pass
+	state = new_state
+	match state:
+		STATE.WANDER:
+			is_grabable = true
+			await get_tree().create_timer(1).timeout
+			new_wander_interval()
+		STATE.CHASE:
+			pass
+		STATE.JUMP:
+			play_sfx(jump_sound)
+			velocity.x = 0
+			$AnimatedSprite2D.play("awake")
+			await $AnimatedSprite2D.animation_finished
+			velocity.y = -sqrt((2 * get_gravity().y * jump_height)/get_physics_process_delta_time())
+		STATE.LAND:
+			play_sfx(hit_sound)
 			$AnimatedSprite2D.play("kick")
 			push(position.direction_to(Globals.claw.position), push_strength)
 
@@ -128,3 +162,10 @@ func is_above_floor() -> bool:
 func new_wander_interval() -> void:
 	direction = randi_range(-1, 1)
 	interval_timer.start(randf_range(wander_interval_min, wander_interval_max))
+	
+func play_sfx(stream: AudioStream):
+	if stream and sfx_player:
+		sfx_player.stream = stream
+		# This adds that "variety" so they don't all sound the same
+		sfx_player.pitch_scale = randf_range(0.9, 1.1)
+		sfx_player.play()
