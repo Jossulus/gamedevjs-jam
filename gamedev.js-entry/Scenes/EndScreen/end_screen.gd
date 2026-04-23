@@ -133,11 +133,50 @@ func _on_state_changed(new_state: ScoreKeeper.STATE) -> void:
 			_overlay.visible = true
 			_disable_claw()
 		ScoreKeeper.STATE.GAME_LOST:
-			_title_label.text = "TIME'S UP!"
-			_title_label.add_theme_color_override("font_color", COLOR_RED)
-			_subtitle_label.text = "Better luck next time."
-			_overlay.visible = true
-			_disable_claw()
+			if Globals.endless_mode:
+				_title_label.text = "GAME OVER"
+				_title_label.add_theme_color_override("font_color", COLOR_RED)
+				_subtitle_label.text = "Score: %d\nDeliveries: %d\nSubmitting..." % [ScoreKeeper.score, ScoreKeeper.endless_deliveries]
+				_overlay.visible = true
+				_disable_claw()
+				_submit_endless_score(ScoreKeeper.score)
+			else:
+				_title_label.text = "TIME'S UP!"
+				_title_label.add_theme_color_override("font_color", COLOR_RED)
+				_subtitle_label.text = "Better luck next time."
+				_overlay.visible = true
+				_disable_claw()
+
+
+func _submit_endless_score(value: int) -> void:
+	if not _is_web_build():
+		_subtitle_label.text = "Score: %d\n(Leaderboard is Web-only)" % value
+		return
+
+	# Descending + numeric display so higher score ranks first.
+	var leaderboard = await WavedashSDK.get_or_create_leaderboard("endless-mode", 1, 0)
+	if not leaderboard.get("success", false):
+		var reason := str(leaderboard.get("message", "Connection issue"))
+		_subtitle_label.text = "Score: %d\n(Leaderboard unavailable)\n%s" % [value, reason]
+		return
+
+	var leaderboard_data = leaderboard.get("data", {})
+	if not (leaderboard_data is Dictionary) or not leaderboard_data.has("id"):
+		_subtitle_label.text = "Score: %d\n(Leaderboard unavailable)\nMissing ID" % value
+		return
+
+	var result = await WavedashSDK.post_leaderboard_score(str(leaderboard_data["id"]), value, true)
+	if result.get("success", false):
+		var result_data = result.get("data", {})
+		var global_rank = result_data.get("globalRank", 0) if result_data is Dictionary else 0
+		_subtitle_label.text = "Score: %d\nGlobal Rank: #%d" % [value, global_rank]
+	else:
+		var reason := str(result.get("message", "Try again later"))
+		_subtitle_label.text = "Score: %d\n(Submit failed)\n%s" % [value, reason]
+
+
+func _is_web_build() -> bool:
+	return OS.get_name() == "Web"
 
 
 func _disable_claw() -> void:

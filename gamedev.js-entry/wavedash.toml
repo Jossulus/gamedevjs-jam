@@ -1,0 +1,5 @@
+# Wavedash deployment config
+game_id = "j974my7j86ezsys0cwt77c7e6585e3e9"
+upload_dir = "./exports/web"
+engine = "godot"
+godot_version = "4.6"

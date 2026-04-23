@@ -20,5 +20,8 @@ var cam : Camera2D
 var level_node : Node2D
 
 
+var endless_mode : bool = false
+
+
 func apply_cam_shake(strength : float):
 	cam.add_trauma(strength)
