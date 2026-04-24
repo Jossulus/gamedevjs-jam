@@ -3,6 +3,11 @@
     "godot": {
       "command": "npx",
       "args": ["-y", "godot-mcp"]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
     }
   }
 }

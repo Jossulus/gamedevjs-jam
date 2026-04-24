@@ -40,7 +40,7 @@ var drop_off_area : DropOffArea:
 
 signal state_changed(new_state: STATE)
 
-enum STATE{IDLE, QUEST_GIVING, QUEST_COMPLETED, PLAYING}
+enum STATE{IDLE, QUEST_GIVING, QUEST_COMPLETED, PLAYING, GAME_WON, GAME_LOST}
 var state : STATE = STATE.IDLE: set = change_state
 
 func change_state(new_state : STATE) -> void:
@@ -56,6 +56,9 @@ func change_state(new_state : STATE) -> void:
 			time_display.text = str(round_time_limit) + 's'
 		STATE.PLAYING:
 			start(round_time_limit)
+		STATE.GAME_LOST:
+			stop()
+			time_display.text = '0s'
 	state_changed.emit(state)
 
 
@@ -64,7 +67,7 @@ func _on_quest_completed() -> void:
 	stop()
 	await get_tree().create_timer(quest_completed_time).timeout
 	if possible_item_data.is_empty():
-		print("All items collected!")
+		state = STATE.GAME_WON
 		return
 	state = STATE.QUEST_GIVING
 
@@ -88,4 +91,4 @@ func on_item_collected(item : Item) -> void:
 
 func on_round_time_timeout() -> void:
 	if state == STATE.PLAYING:
-		print("YOU LOST!!!!!!!!")
+		state = STATE.GAME_LOST
