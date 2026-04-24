@@ -155,18 +155,3 @@ func reset_for_new_game() -> void:
 	endless_deliveries = 0
 	round_time_limit = round_time_limit
 	possible_item_data = _starting_pool.duplicate()
-
-
-
-
-
-		modified:   Objects/Items/Cymbal Monkey Bot/cymbal_monkey_bot.tres
-		modified:   Objects/Items/Flying Ball/Flying Ball.tres
-		modified:   Objects/Items/Kick Robot/kick_robot.gd
-		modified:   Objects/Items/Wind Up Mouse/wind_up_mouse.tres
-		modified:   Objects/LevelNode/level_node.gd
-		modified:   Scenes/EndScreen/end_screen.gd
-		modified:   Scenes/game.tscn
-		modified:   Scenes/main_menu.gd
-		modified:   Scenes/main_menu.tscn
-		modified:   project.godot
