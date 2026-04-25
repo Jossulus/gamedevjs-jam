@@ -3,6 +3,7 @@ class_name Canon
 
 
 @onready var bullet_scene : PackedScene = preload("uid://db3s4pnf7748w")
+@onready var sfx_player : AudioStreamPlayer2D = $SFXPlayer
 
 
 @export var num_bullets : int = 5
@@ -42,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 func shoot_spread() -> void:
 	if is_grabbed: return
 	if Globals.claw.position.y < claw_height_threshold: return
+	sfx_player.play()
 	
 	var base_direction = position.direction_to(Globals.claw.position)
 	var base_angle = base_direction.angle()

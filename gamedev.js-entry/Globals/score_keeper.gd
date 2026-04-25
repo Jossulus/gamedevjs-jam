@@ -134,7 +134,13 @@ func new_target_item_data() -> void:
 
 
 func _random_item_data() -> ItemData:
-	return possible_item_data[randi_range(0, possible_item_data.size() - 1)]
+	var in_scene : Array[ItemData] = []
+	for node in get_tree().get_nodes_in_group("items"):
+		var item := node as Item
+		if item and item.item_data in possible_item_data and item.item_data not in in_scene:
+			in_scene.append(item.item_data)
+	var pool := in_scene if not in_scene.is_empty() else possible_item_data
+	return pool[randi_range(0, pool.size() - 1)]
 
 
 func on_item_collected(item : Item) -> void:
@@ -155,18 +161,3 @@ func reset_for_new_game() -> void:
 	endless_deliveries = 0
 	round_time_limit = round_time_limit
 	possible_item_data = _starting_pool.duplicate()
-
-
-
-
-
-		modified:   Objects/Items/Cymbal Monkey Bot/cymbal_monkey_bot.tres
-		modified:   Objects/Items/Flying Ball/Flying Ball.tres
-		modified:   Objects/Items/Kick Robot/kick_robot.gd
-		modified:   Objects/Items/Wind Up Mouse/wind_up_mouse.tres
-		modified:   Objects/LevelNode/level_node.gd
-		modified:   Scenes/EndScreen/end_screen.gd
-		modified:   Scenes/game.tscn
-		modified:   Scenes/main_menu.gd
-		modified:   Scenes/main_menu.tscn
-		modified:   project.godot

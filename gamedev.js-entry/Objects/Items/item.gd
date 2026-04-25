@@ -23,6 +23,7 @@ var push_velocity : Vector2
 
 func _ready() -> void:
 	assert(item_data, 'No item_data.')
+	add_to_group("items")
 
 
 func _physics_process(_delta: float) -> void:

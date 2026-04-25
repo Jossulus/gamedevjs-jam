@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b6ogy8x3vdcmj"]
 
 [ext_resource type="Script" uid="uid://buf3vdmq4hyux" path="res://Objects/Items/Crocodile/crocodile.gd" id="1_e1e3o"]
+[ext_resource type="AudioStream" uid="uid://ch66swuey3p0c" path="res://munch_sfx.mp3" id="3_croc"]
 [ext_resource type="Texture2D" uid="uid://bj55dda8pxhoa" path="res://Objects/Items/Crocodile/crocodile.png" id="2_74t2j"]
 [ext_resource type="Resource" uid="uid://dvab5p05ehv7y" path="res://Objects/Items/Crocodile/crocodile.tres" id="2_dsoq6"]
 
@@ -118,6 +119,9 @@ sprite_frames = SubResource("SpriteFrames_f4the")
 animation = &"open"
 frame = 5
 frame_progress = 1.0
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1144058724]
+stream = ExtResource("3_croc")
 
 [node name="RegenTimer" type="Timer" parent="." unique_id=1144058723]
 autostart = true

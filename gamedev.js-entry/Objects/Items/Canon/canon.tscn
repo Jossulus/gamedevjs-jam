@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://crpyafy65kg5a"]
 
 [ext_resource type="Script" uid="uid://bk34dm2xa6sdo" path="res://Objects/Items/Canon/canon.gd" id="1_1ueff"]
+[ext_resource type="AudioStream" uid="uid://dn4xpmuf8k6nn" path="res://cannon_sfx.mp3" id="4_canon"]
 [ext_resource type="Resource" uid="uid://db7rcm8n0gavf" path="res://Objects/Items/Canon/canon.tres" id="2_lv2y0"]
 [ext_resource type="Texture2D" uid="uid://b5238c1ehtgp6" path="res://Objects/Items/Canon/Base.png" id="2_x4i3b"]
 [ext_resource type="Texture2D" uid="uid://btd3bwvjhhx55" path="res://Objects/Items/Canon/Muzzle.png" id="3_lv2y0"]
@@ -23,6 +24,9 @@ texture = ExtResource("2_x4i3b")
 
 [node name="Muzzle" type="Sprite2D" parent="." unique_id=1347704209]
 texture = ExtResource("3_lv2y0")
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2031181355]
+stream = ExtResource("4_canon")
 
 [node name="Cooldown" type="Timer" parent="." unique_id=2031181354]
 wait_time = 5.0
