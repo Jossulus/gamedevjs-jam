@@ -101,6 +101,21 @@ func change_state(new_state : STATE) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# Disable AI while grabbed or dropped into the box
+	if is_grabbed:
+		velocity = Vector2.ZERO
+		push_velocity = Vector2.ZERO
+		if state != STATE.WANDER:
+			state = STATE.WANDER
+		move_and_slide()
+		return
+	if dropped_into_box:
+		# Just fall straight in — no AI, no push
+		push_velocity = Vector2.ZERO
+		apply_gravity()
+		move_and_slide()
+		return
+
 	if get_direction_to_claw() < 0:
 		$AnimatedSprite2D.flip_h = false
 	elif get_direction_to_claw() > 0:
@@ -148,8 +163,6 @@ func _physics_process(delta: float) -> void:
 	elif is_outside_right_edge():
 		velocity.x = -1
 		position.x = Globals.right_ground_marker.position.x - 1
-	if is_grabbed:
-		velocity = Vector2.ZERO
 	if !is_above_floor():
 		position.y = Globals.right_ground_marker.position.y - 1
 	move_and_slide()

@@ -74,7 +74,6 @@ func change_input(new_input : INPUT) -> void:
 		INPUT.FREE:
 			velocity.y = 0
 		INPUT.DOWN:
-			ScoreKeeper.state = ScoreKeeper.STATE.PLAYING
 			velocity.x = 0
 			velocity.y = down_speed
 		INPUT.UP:

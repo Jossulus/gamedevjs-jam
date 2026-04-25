@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+WavedashSDK="*res://addons/wavedash/WavedashSDK.gd"
 Globals="*uid://bdm3dhw27yg7n"
 ScoreKeeper="*uid://dmqlfy550qeyw"
 

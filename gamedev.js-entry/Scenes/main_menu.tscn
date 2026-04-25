@@ -137,6 +137,50 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
 text = "INSERT COIN"
 
+[node name="ClassicButton" type="Button" parent="UILayer/UI/CenterContainer/VBoxContainer" unique_id=371658952]
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "CLASSIC"
+
+[node name="EndlessButton" type="Button" parent="UILayer/UI/CenterContainer/VBoxContainer" unique_id=371658953]
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "ENDLESS"
+
+[node name="LeaderboardButton" type="Button" parent="UILayer/UI/CenterContainer/VBoxContainer" unique_id=371658954]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "LEADERBOARD"
+
 [node name="QuitButton" type="Button" parent="UILayer/UI/CenterContainer/VBoxContainer" unique_id=729855685]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -211,6 +255,9 @@ tick_count = 5
 ticks_on_borders = true
 
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/ClassicButton" to="." method="_on_classic_pressed"]
+[connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/EndlessButton" to="." method="_on_endless_pressed"]
+[connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="UILayer/UI/AudioPanel/VBox/MusicRow/MusicSlider" to="." method="_on_music_slider_changed"]
 [connection signal="value_changed" from="UILayer/UI/AudioPanel/VBox/SoundRow/SoundSlider" to="." method="_on_sound_slider_changed"]
