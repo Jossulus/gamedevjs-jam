@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://qfuv7no2x188"]
+
+[ext_resource type="Texture2D" uid="uid://dwt0n680idwxe" path="res://Objects/leftRightMash/leftRightMash.png" id="1_mash"]
+[ext_resource type="Script" uid="uid://ccpqso8gbf26q" path="res://Objects/leftRightMash/left_right_mash_display.gd" id="2_mash"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju4kk"]
+atlas = ExtResource("1_mash")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwx5v"]
+atlas = ExtResource("1_mash")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh1ge"]
+atlas = ExtResource("1_mash")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v0et"]
+atlas = ExtResource("1_mash")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8yuh"]
+atlas = ExtResource("1_mash")
+region = Rect2(256, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecvgd"]
+atlas = ExtResource("1_mash")
+region = Rect2(320, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wwhj"]
+atlas = ExtResource("1_mash")
+region = Rect2(384, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwdp2"]
+atlas = ExtResource("1_mash")
+region = Rect2(448, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mash"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju4kk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwx5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh1ge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v0et")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8yuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecvgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wwhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwdp2")
+}],
+"loop": true,
+"name": &"mash",
+"speed": 26.0
+}]
+
+[node name="LeftRightMash" type="AnimatedSprite2D" unique_id=1466935575]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_mash")
+animation = &"mash"
+autoplay = "mash"
+frame_progress = 0.52034867
+script = ExtResource("2_mash")

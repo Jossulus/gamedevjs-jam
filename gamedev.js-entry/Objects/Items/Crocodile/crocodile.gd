@@ -21,7 +21,9 @@ var next_expected_bite_freeing_direction : int = 0
 
 
 @export var detection_area : Area2D
+@export var munch_cut_time : float = 0.5
 
+@onready var sfx_player : AudioStreamPlayer2D = $SFXPlayer
 
 var original_x : float
 
@@ -82,7 +84,10 @@ func snap(area : Area2D) -> void:
 	await pos_tween.finished
 	if position.distance_to(Globals.claw.position) <= snap_radius:
 		Globals.claw.is_snapped_by_crocodile = true
+		sfx_player.play()
 		Globals.apply_cam_shake(20)
+		await get_tree().create_timer(munch_cut_time).timeout
+		sfx_player.stop()
 	else:
 		retract()
 

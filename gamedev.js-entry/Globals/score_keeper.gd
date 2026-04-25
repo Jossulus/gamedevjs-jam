@@ -134,7 +134,13 @@ func new_target_item_data() -> void:
 
 
 func _random_item_data() -> ItemData:
-	return possible_item_data[randi_range(0, possible_item_data.size() - 1)]
+	var in_scene : Array[ItemData] = []
+	for node in get_tree().get_nodes_in_group("items"):
+		var item := node as Item
+		if item and item.item_data in possible_item_data and item.item_data not in in_scene:
+			in_scene.append(item.item_data)
+	var pool := in_scene if not in_scene.is_empty() else possible_item_data
+	return pool[randi_range(0, pool.size() - 1)]
 
 
 func on_item_collected(item : Item) -> void:
