@@ -4,6 +4,7 @@ extends Node2D
 @onready var classic_button: Button = $UILayer/UI/CenterContainer/VBoxContainer/ClassicButton
 @onready var endless_button: Button = $UILayer/UI/CenterContainer/VBoxContainer/EndlessButton
 @onready var leaderboard_button: Button = $UILayer/UI/CenterContainer/VBoxContainer/LeaderboardButton
+@onready var credits_overlay: Control = $UILayer/UI/CreditsOverlay
 
 func _ready() -> void:
 	print("MainMenu loaded successfully")
@@ -37,6 +38,12 @@ func _on_leaderboard_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _on_credits_pressed() -> void:
+	credits_overlay.visible = true
+
+func _on_credits_close_pressed() -> void:
+	credits_overlay.visible = false
 
 func _on_music_slider_changed(value: float) -> void:
 	var db := linear_to_db(value / 4.0) if value > 0 else -80.0

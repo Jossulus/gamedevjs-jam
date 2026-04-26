@@ -27,6 +27,9 @@ func _on_state_changed(new_state: ScoreKeeper.STATE) -> void:
 			print("[Kid] Requesting: " + ScoreKeeper.target_item_data.name)
 		ScoreKeeper.STATE.PLAYING:
 			sprite.play("idle")
+		ScoreKeeper.STATE.QUEST_COMPLETED:
+			sprite.play("happy")
+			bubble_icon.visible = false
 		_:
 			sprite.play("idle")
 			bubble_icon.visible = false
