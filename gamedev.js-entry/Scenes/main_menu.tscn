@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bk33k711o1obl" path="res://Scenes/main_menu.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://caw2nat4ssrd4" path="res://Objects/Arcade/arcadeMachineTallOnly.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://cup7a8xwk2lya" path="res://Objects/Arcade/bgOnly360x360.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cge0x8sd6fwho" path="res://bg.webp" id="2_ce3w2"]
 [ext_resource type="Texture2D" uid="uid://kup2501xosu4" path="res://Objects/Claw/Claw1.png" id="4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_claw"]
@@ -58,6 +58,7 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="MainMenu" type="Node2D" unique_id=1474816060]
+position = Vector2(0, -1)
 script = ExtResource("1")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=648288142]
@@ -69,7 +70,7 @@ limit_bottom = 180
 
 [node name="BackgroundOnly" type="Sprite2D" parent="." unique_id=753656246]
 z_index = -1
-texture = ExtResource("3")
+texture = ExtResource("2_ce3w2")
 
 [node name="Arcade" type="Sprite2D" parent="." unique_id=2126778470]
 z_index = 1
@@ -195,6 +196,20 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
 text = "QUIT"
 
+[node name="CreditsButton" type="Button" parent="UILayer/UI/CenterContainer/VBoxContainer" unique_id=300000001]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "CREDITS"
+
 [node name="AudioPanel" type="PanelContainer" parent="UILayer/UI" unique_id=2127340493]
 layout_mode = 1
 anchors_preset = 3
@@ -254,10 +269,98 @@ value = 4.0
 tick_count = 5
 ticks_on_borders = true
 
+[node name="CreditsOverlay" type="Control" parent="UILayer/UI" unique_id=300000002]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="UILayer/UI/CreditsOverlay" unique_id=300000003]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78)
+
+[node name="CenterContainer" type="CenterContainer" parent="UILayer/UI/CreditsOverlay" unique_id=300000004]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreditsPanel" type="PanelContainer" parent="UILayer/UI/CreditsOverlay/CenterContainer" unique_id=300000005]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_title_bg")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UI/CreditsOverlay/CenterContainer/CreditsPanel" unique_id=300000006]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UI/CreditsOverlay/CenterContainer/CreditsPanel/MarginContainer" unique_id=300000007]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="CreditsTitle" type="Label" parent="UILayer/UI/CreditsOverlay/CenterContainer/CreditsPanel/MarginContainer/VBoxContainer" unique_id=300000008]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 30
+text = "CREDITS"
+horizontal_alignment = 1
+
+[node name="CreditsContent" type="RichTextLabel" parent="UILayer/UI/CreditsOverlay/CenterContainer/CreditsPanel/MarginContainer/VBoxContainer" unique_id=300000009]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]Abel[b] (Pixel Art)[/b]
+[color=#aaaaaa]abelgamedev.itch.io[/color]
+
+Jossulus[b] (Programming)[/b]
+[color=#aaaaaa]github.com/Jossulus[/color]
+
+Hydrobolix[b] (Main Menu)[/b]
+[color=#aaaaaa]github.com/tyrone-git-dev[/color]
+
+Aron T[b] (Music/SFX)[/b]
+[color=#aaaaaa]github.com/foreignhueworks-ux[/color]
+
+Andrei[b] (Programming)[/b]
+[color=#aaaaaa]github.com/Jiwuuuu[/color][/center]"
+fit_content = true
+
+[node name="CloseButton" type="Button" parent="UILayer/UI/CreditsOverlay/CenterContainer/CreditsPanel/MarginContainer/VBoxContainer" unique_id=300000010]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "CLOSE"
+
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/ClassicButton" to="." method="_on_classic_pressed"]
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/EndlessButton" to="." method="_on_endless_pressed"]
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="UILayer/UI/CreditsOverlay/CenterContainer/CreditsPanel/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_credits_close_pressed"]
 [connection signal="value_changed" from="UILayer/UI/AudioPanel/VBox/MusicRow/MusicSlider" to="." method="_on_music_slider_changed"]
 [connection signal="value_changed" from="UILayer/UI/AudioPanel/VBox/SoundRow/SoundSlider" to="." method="_on_sound_slider_changed"]

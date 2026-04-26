@@ -2,6 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dd6aqhgqg4yio" path="res://Objects/Kid/kid.gd" id="1_0ncdb"]
 [ext_resource type="Texture2D" uid="uid://6ux3o6xq6tfo" path="res://Objects/Kid/kid1.png" id="2_kid1"]
+[ext_resource type="Texture2D" uid="uid://dxrn3f7vpw5u8" path="res://Objects/Kid/happykid1.webp" id="2_n6c8x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w57dt"]
+atlas = ExtResource("2_n6c8x")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr7ow"]
+atlas = ExtResource("2_n6c8x")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle"]
 atlas = ExtResource("2_kid1")
@@ -13,6 +22,17 @@ region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kid"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w57dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr7ow")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_idle")
@@ -41,11 +61,13 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_kid")
 animation = &"talking"
 autoplay = "idle"
+frame = 1
+frame_progress = 0.002610491
 
 [node name="BubbleIcon" type="Sprite2D" parent="." unique_id=1111111111]
 position = Vector2(12, -17)
 scale = Vector2(0.5, 0.5)
 
-[node name="TalkTimer" type="Timer" parent="." unique_id=2222222222]
+[node name="TalkTimer" type="Timer" parent="." unique_id=-2072745074]
 wait_time = 2.5
 one_shot = true
