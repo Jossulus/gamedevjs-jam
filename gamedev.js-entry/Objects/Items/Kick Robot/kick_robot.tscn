@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://cdb3j1gspknik" path="res://Objects/Items/Kick Robot/kick_robot.gd" id="1_78p7e"]
 [ext_resource type="Resource" uid="uid://d4ju3s61wvmbn" path="res://Objects/Items/Kick Robot/Kick Robot.tres" id="2_6mcdu"]
 [ext_resource type="Texture2D" uid="uid://bfbi3qyxuhbgx" path="res://Objects/Items/Kick Robot/walkickRobo32.png" id="3_6mcdu"]
+[ext_resource type="AudioStream" uid="uid://biapst3iogv0v" path="res://Kickrobot_Jump.wav" id="4_jump"]
+[ext_resource type="AudioStream" uid="uid://cx486li5biau1" path="res://KickRobot_Kick_Hit.wav" id="5_hit"]
+[ext_resource type="AudioStream" uid="uid://bl2dtkbsc3qb6" path="res://Kickrobot_Kick_Miss.wav" id="6_miss"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wn50l"]
 atlas = ExtResource("3_6mcdu")
@@ -142,6 +145,9 @@ wander_interval_max = 2
 interval_timer = NodePath("Timer")
 max_jump_height = 140
 item_data = ExtResource("2_6mcdu")
+jump_sound = ExtResource("4_jump")
+hit_sound = ExtResource("5_hit")
+miss_sound = ExtResource("6_miss")
 metadata/_custom_type_script = "uid://cdb3j1gspknik"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=829454875]
@@ -156,5 +162,7 @@ shape = SubResource("RectangleShape2D_1q2ab")
 [node name="Timer" type="Timer" parent="." unique_id=1456824269]
 one_shot = true
 autostart = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=200994335]
 
 [connection signal="timeout" from="Timer" to="." method="new_wander_interval"]
