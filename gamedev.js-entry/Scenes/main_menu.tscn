@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://bqwav0f7ltn2s"]
+[gd_scene format=3 uid="uid://boq7g8wthtc07"]
 
 [ext_resource type="Script" uid="uid://bk33k711o1obl" path="res://Scenes/main_menu.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://caw2nat4ssrd4" path="res://Objects/Arcade/arcadeMachineTallOnly.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://cge0x8sd6fwho" path="res://bg.webp" id="2_ce3w2"]
 [ext_resource type="Texture2D" uid="uid://kup2501xosu4" path="res://Objects/Claw/Claw1.png" id="4"]
+[ext_resource type="FontFile" uid="uid://d1p5x37gaj0ka" path="res://Fonts/Pix32.ttf" id="5_n45e2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_claw"]
 atlas = ExtResource("4")
@@ -115,10 +116,10 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5_n45e2")
 theme_override_font_sizes/font_size = 48
 text = "CLAW MACHINE"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Spacer" type="Control" parent="UILayer/UI/CenterContainer/VBoxContainer" unique_id=1115828677]
 custom_minimum_size = Vector2(0, 20)
@@ -131,6 +132,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_n45e2")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
@@ -175,6 +177,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_n45e2")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
@@ -189,6 +192,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_n45e2")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
@@ -203,6 +207,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_n45e2")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
@@ -237,8 +242,10 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_fonts/font = ExtResource("5_n45e2")
 theme_override_font_sizes/font_size = 16
 text = "MUSIC"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MusicSlider" type="HSlider" parent="UILayer/UI/AudioPanel/VBox/MusicRow" unique_id=1169144229]
@@ -257,8 +264,10 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_fonts/font = ExtResource("5_n45e2")
 theme_override_font_sizes/font_size = 16
 text = "SOUND"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SoundSlider" type="HSlider" parent="UILayer/UI/AudioPanel/VBox/SoundRow" unique_id=1415671373]
@@ -361,6 +370,6 @@ text = "CLOSE"
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="UILayer/UI/CreditsOverlay/CenterContainer/CreditsPanel/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_credits_close_pressed"]
 [connection signal="value_changed" from="UILayer/UI/AudioPanel/VBox/MusicRow/MusicSlider" to="." method="_on_music_slider_changed"]
 [connection signal="value_changed" from="UILayer/UI/AudioPanel/VBox/SoundRow/SoundSlider" to="." method="_on_sound_slider_changed"]
+[connection signal="pressed" from="UILayer/UI/CreditsOverlay/CenterContainer/CreditsPanel/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_credits_close_pressed"]
