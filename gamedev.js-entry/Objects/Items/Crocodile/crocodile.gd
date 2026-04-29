@@ -48,10 +48,8 @@ func change_state(new_state : STATE) -> void:
 
 
 func _process(_delta: float) -> void:
-	#print(bite_strength)
 	
 	var input_dir : int = int(Input.get_axis("claw_left", "claw_right"))
-	#print('input: ', str(input_dir))
 	if Globals.claw.is_snapped_by_crocodile and input_dir != 0:
 		if next_expected_bite_freeing_direction == 0:
 			next_expected_bite_freeing_direction = -input_dir
@@ -62,7 +60,7 @@ func _process(_delta: float) -> void:
 			bite_strength -= bite_strength_reduction
 			Globals.apply_cam_shake(bite_strength_reduction/10)
 			next_expected_bite_freeing_direction = -input_dir
-	if bite_strength <= 0:
+	if bite_strength <= 0 and Globals.claw.is_snapped_by_crocodile:
 		Globals.claw.is_snapped_by_crocodile = false
 		next_expected_bite_freeing_direction = 0
 		bite_strength = max_bite_strength
