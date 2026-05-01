@@ -20,13 +20,18 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		move_and_slide()
 		return
+	if is_in_drop_off:
+		apply_gravity()
+		move_and_slide()
+		return
 	if position.y > Globals.claw.position.y:
 		var dir : Vector2 = calculate_accel_direction_fastest(position, velocity, Globals.claw.position, full_thrust)
 		velocity += dir*full_thrust*delta
 		rotation = dir.angle() + PI/2
 	apply_gravity(0.2)
 	if position.distance_to(Globals.claw.position) < push_range:
-		Globals.claw.push(position.direction_to(Globals.claw.position), int(velocity.length()))
+		if not Globals.claw.is_snapped_by_crocodile:
+			Globals.claw.push(position.direction_to(Globals.claw.position), int(velocity.length()))
 		velocity -= position.direction_to(Globals.claw.position)*velocity.length()
 	apply_push()
 	if is_outside_left_edge():

@@ -15,7 +15,8 @@ var _starting_pool : Array[ItemData] = []
 var target_item_data : ItemData
 
 
-var round_time_limit : float = 35
+var classic_round_time : float = 55
+var endless_round_time : float = 100
 
 
 var time_display : Label
@@ -25,12 +26,15 @@ var score_display : Label
 var quest_completed_time : float = 3
 
 
-# Endless-mode tuning
+# Per-mode bonus tuning
 var score : int = 0
-var endless_deliveries : int = 0
-var endless_bonus_start : float = 6.0
-var endless_bonus_shrink : float = 0.5
-var endless_bonus_min : float = 2.0
+var deliveries : int = 0
+var classic_bonus_start : float = 6.0
+var classic_bonus_shrink : float = 0.5
+var classic_bonus_min : float = 2.0
+var endless_bonus_start : float = 12.0
+var endless_bonus_shrink : float = 0.2
+var endless_bonus_min : float = 5.0
 
 
 signal spawn_next_item(data: ItemData)
@@ -68,7 +72,7 @@ func change_state(new_state : STATE) -> void:
 			# Start the timer immediately — don't wait for claw input
 			if is_stopped():
 				# First round or timer expired: start the countdown now
-				start(round_time_limit)
+				start(_round_time_for_mode())
 			print("Time remaining: " + str(snapped(time_left, 0.1)) + "s")
 			# Emit QUEST_GIVING first so the kid shows the toy request
 			state_changed.emit(state)
@@ -87,21 +91,22 @@ func change_state(new_state : STATE) -> void:
 
 
 func _on_quest_completed() -> void:
+	deliveries += 1
+
+	# Add bonus time to the running timer instead of resetting (both modes).
+	var bonus : float = _bonus_for_delivery(deliveries)
+	var new_time : float = time_left + bonus
+	stop()
+	start(new_time)
+	print("Bonus +%.1fs → %.1fs remaining" % [bonus, new_time])
+
 	if Globals.endless_mode:
-		endless_deliveries += 1
 		var time_remaining := time_left
 		var delivery_points : int = 100 + int(time_remaining * 10)
 		score += delivery_points
 		if score_display:
 			score_display.text = "SCORE " + str(score)
-		print("Endless delivery #%d  +%d  total=%d" % [endless_deliveries, delivery_points, score])
-
-		# Add bonus time to the running timer instead of resetting
-		var bonus : float = max(endless_bonus_min, endless_bonus_start - endless_bonus_shrink * (endless_deliveries - 1))
-		var new_time : float = time_left + bonus
-		stop()
-		start(new_time)
-		print("Bonus +%.1fs → %.1fs remaining" % [bonus, new_time])
+		print("Endless delivery #%d  +%d  total=%d" % [deliveries, delivery_points, score])
 
 		possible_item_data = _starting_pool.duplicate()
 		# Respawn the same toy type that was just delivered
@@ -116,6 +121,16 @@ func _on_quest_completed() -> void:
 		state = STATE.GAME_WON
 		return
 	state = STATE.QUEST_GIVING
+
+
+func _round_time_for_mode() -> float:
+	return endless_round_time if Globals.endless_mode else classic_round_time
+
+
+func _bonus_for_delivery(n : int) -> float:
+	if Globals.endless_mode:
+		return max(endless_bonus_min, endless_bonus_start - endless_bonus_shrink * (n - 1))
+	return max(classic_bonus_min, classic_bonus_start - classic_bonus_shrink * (n - 1))
 
 
 func _process(_delta: float) -> void:
@@ -158,6 +173,5 @@ func on_round_time_timeout() -> void:
 
 func reset_for_new_game() -> void:
 	score = 0
-	endless_deliveries = 0
-	round_time_limit = round_time_limit
+	deliveries = 0
 	possible_item_data = _starting_pool.duplicate()

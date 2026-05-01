@@ -11,11 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cge0x8sd6fwho" path="res://bg.webp" id="7_mg4q0"]
 [ext_resource type="PackedScene" uid="uid://b6ogy8x3vdcmj" path="res://Objects/Items/Crocodile/crocodile.tscn" id="8_v158k"]
 [ext_resource type="PackedScene" uid="uid://6j817gmiiuif" path="res://Objects/Items/Flying Ball/flying_ball.tscn" id="9_h4fw4"]
-[ext_resource type="AudioStream" uid="uid://biapst3iogv0v" path="res://Kickrobot_Jump.wav" id="10_7nbq1"]
 [ext_resource type="AudioStream" uid="uid://dsdun4yv3ceeu" path="res://Robot_hook_main loop.ogg" id="10_ldgsr"]
-[ext_resource type="AudioStream" uid="uid://cx486li5biau1" path="res://KickRobot_Kick_Hit.wav" id="11_exi56"]
 [ext_resource type="FontFile" uid="uid://d1p5x37gaj0ka" path="res://Fonts/Pix32.ttf" id="11_o5yvi"]
-[ext_resource type="AudioStream" uid="uid://bl2dtkbsc3qb6" path="res://Kickrobot_Kick_Miss.wav" id="12_7t8sx"]
 [ext_resource type="Script" uid="uid://bavw2nd40pc17" path="res://Objects/Time Display/time_display.gd" id="12_rku1e"]
 [ext_resource type="Script" uid="uid://h7rmrw34y67t" path="res://Objects/Time Display/score_display.gd" id="12_scoredsp"]
 [ext_resource type="PackedScene" uid="uid://im7jdvwcis06" path="res://Objects/Kid/kid.tscn" id="13_kid"]
@@ -97,11 +94,8 @@ position = Vector2(-121, 157)
 shape = SubResource("WorldBoundaryShape2D_wowpa")
 
 [node name="KickRobot" parent="." unique_id=843346967 instance=ExtResource("4_wowpa")]
-jump_sound = ExtResource("10_7nbq1")
-hit_sound = ExtResource("11_exi56")
-miss_sound = ExtResource("12_7t8sx")
 
-[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="KickRobot" unique_id=100994335]
+[node name="SFXPlayer2" type="AudioStreamPlayer2D" parent="KickRobot" unique_id=100994335]
 
 [node name="WindUpMouse" parent="." unique_id=1021702830 instance=ExtResource("6_i6g32")]
 

@@ -7,7 +7,7 @@ class_name Canon
 
 
 @export var num_bullets : int = 5
-@export var spread : float = 50
+@export var spread : float = 80
 
 @export var claw_height_threshold : int = -80
 
@@ -26,6 +26,8 @@ func _process(_delta: float) -> void:
 
 
 func _input(_event: InputEvent) -> void:
+	if is_grabbed: return
+	if is_in_drop_off: return
 	if Input.is_action_just_pressed("push_ability"):
 		shoot_spread()
 
@@ -42,6 +44,7 @@ func _physics_process(_delta: float) -> void:
 
 func shoot_spread() -> void:
 	if is_grabbed: return
+	if is_in_drop_off: return
 	if Globals.claw.position.y < claw_height_threshold: return
 	sfx_player.play()
 	

@@ -96,7 +96,10 @@ func _physics_process(delta: float) -> void:
 		INPUT.RETURN:
 			handle_return()
 	
-	push_velocity = lerp(push_velocity, Vector2.ZERO, 1 - exp(-10 * delta))
+	if is_snapped_by_crocodile:
+		push_velocity = Vector2.ZERO
+	else:
+		push_velocity = lerp(push_velocity, Vector2.ZERO, 1 - exp(-10 * delta))
 	if is_outside_left_edge(): velocity.x = 1
 	elif is_outside_right_edge(): velocity.x = -1
 	if is_above_ground():

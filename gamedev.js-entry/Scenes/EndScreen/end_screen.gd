@@ -136,7 +136,7 @@ func _on_state_changed(new_state: ScoreKeeper.STATE) -> void:
 			if Globals.endless_mode:
 				_title_label.text = "GAME OVER"
 				_title_label.add_theme_color_override("font_color", COLOR_RED)
-				_subtitle_label.text = "Score: %d\nDeliveries: %d\nSubmitting..." % [ScoreKeeper.score, ScoreKeeper.endless_deliveries]
+				_subtitle_label.text = "Score: %d\nDeliveries: %d\nSubmitting..." % [ScoreKeeper.score, ScoreKeeper.deliveries]
 				_overlay.visible = true
 				_disable_claw()
 				_submit_endless_score(ScoreKeeper.score)

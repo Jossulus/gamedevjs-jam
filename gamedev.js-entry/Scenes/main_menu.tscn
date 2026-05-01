@@ -361,6 +361,6 @@ text = "CLOSE"
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="UILayer/UI/CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="UILayer/UI/CreditsOverlay/CenterContainer/CreditsPanel/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_credits_close_pressed"]
 [connection signal="value_changed" from="UILayer/UI/AudioPanel/VBox/MusicRow/MusicSlider" to="." method="_on_music_slider_changed"]
 [connection signal="value_changed" from="UILayer/UI/AudioPanel/VBox/SoundRow/SoundSlider" to="." method="_on_sound_slider_changed"]
+[connection signal="pressed" from="UILayer/UI/CreditsOverlay/CenterContainer/CreditsPanel/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_credits_close_pressed"]

@@ -15,6 +15,10 @@ var bite_strength : float
 
 @export var max_bite_strength : float = 20
 
+@export var max_snap_duration : float = 4.0
+
+var _snap_session_id : int = 0
+
 @export var bite_strength_regen_per_s : float = 1
 
 var next_expected_bite_freeing_direction : int = 0
@@ -84,12 +88,24 @@ func snap(area : Area2D) -> void:
 	await pos_tween.finished
 	if position.distance_to(Globals.claw.position) <= snap_radius:
 		Globals.claw.is_snapped_by_crocodile = true
+		_snap_session_id += 1
+		_force_release_after_timeout(_snap_session_id)
 		sfx_player.play()
 		Globals.apply_cam_shake(20)
 		await get_tree().create_timer(munch_cut_time).timeout
 		sfx_player.stop()
 	else:
 		retract()
+
+
+func _force_release_after_timeout(session_id : int) -> void:
+	await get_tree().create_timer(max_snap_duration).timeout
+	if session_id != _snap_session_id: return
+	if not Globals.claw.is_snapped_by_crocodile: return
+	Globals.claw.is_snapped_by_crocodile = false
+	next_expected_bite_freeing_direction = 0
+	bite_strength = max_bite_strength
+	retract()
 
 
 func retract():
