@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dsdun4yv3ceeu" path="res://Robot_hook_main loop.ogg" id="6_ypn2w"]
 [ext_resource type="FontFile" uid="uid://d1p5x37gaj0ka" path="res://Fonts/Pix32.ttf" id="7_0hi5t"]
 [ext_resource type="Script" uid="uid://bavw2nd40pc17" path="res://Objects/Time Display/time_display.gd" id="8_oa4hg"]
+[ext_resource type="PackedScene" uid="uid://btmt5n5km1qd8" path="res://Objects/Items/Cowboy/Cowboy.tscn" id="11_38mqk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbpvm"]
 size = Vector2(257, 20)
@@ -92,3 +93,5 @@ text = "0s"
 horizontal_alignment = 2
 script = ExtResource("8_oa4hg")
 metadata/_edit_use_anchors_ = true
+
+[node name="Cowboy" parent="." unique_id=1114478989 instance=ExtResource("11_38mqk")]

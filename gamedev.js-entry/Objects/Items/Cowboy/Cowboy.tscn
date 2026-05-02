@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://btmt5n5km1qd8"]
+
+[ext_resource type="Script" uid="uid://dwhrapre84713" path="res://Objects/Items/Cowboy/cowboy.gd" id="1_xw4n4"]
+[ext_resource type="Texture2D" uid="uid://kxesq8jmien4" path="res://Objects/Items/Cowboy/smallCowboy.png" id="2_sskkd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4qc3"]
+atlas = ExtResource("2_sskkd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nf6t"]
+atlas = ExtResource("2_sskkd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv11b"]
+atlas = ExtResource("2_sskkd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnvdu"]
+atlas = ExtResource("2_sskkd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foyu8"]
+atlas = ExtResource("2_sskkd")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deg7k"]
+atlas = ExtResource("2_sskkd")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o5u5"]
+atlas = ExtResource("2_sskkd")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf0dw"]
+atlas = ExtResource("2_sskkd")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48mh3"]
+atlas = ExtResource("2_sskkd")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ga4oc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4qc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nf6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mv11b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnvdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foyu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deg7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o5u5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf0dw")
+}],
+"loop": true,
+"name": &"swinging",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48mh3")
+}],
+"loop": true,
+"name": &"throwing",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0odef"]
+size = Vector2(10, 18)
+
+[node name="Cowboy" type="CharacterBody2D" unique_id=1114478989 node_paths=PackedStringArray("state_change_timer")]
+script = ExtResource("1_xw4n4")
+state_change_timer = NodePath("State Change Timer")
+metadata/_custom_type_script = "uid://dwhrapre84713"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2048796707]
+sprite_frames = SubResource("SpriteFrames_ga4oc")
+animation = &"swinging"
+autoplay = "swinging"
+frame_progress = 0.9150816
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=342456462]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_0odef")
+
+[node name="State Change Timer" type="Timer" parent="." unique_id=641442294]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="State Change Timer" to="." method="switch_state_from_timer"]
