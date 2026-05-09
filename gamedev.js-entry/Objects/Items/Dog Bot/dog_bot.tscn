@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cn3t7x9qhzdvl"]
+
+[ext_resource type="Script" uid="uid://c7ew8tmlyng7a" path="res://Objects/Items/Dog Bot/dog_bot.gd" id="1_dbbot"]
+[ext_resource type="Texture2D" uid="uid://ceaec0p1csvku" path="res://Objects/Items/Kick Robot/kickBot.png" id="2_dbbot"]
+[ext_resource type="Script" uid="uid://dkq4hoaydelmk" path="res://Objects/Items/item_data.gd" id="3_dbbot"]
+
+[sub_resource type="Resource" id="Resource_dbbot"]
+script = ExtResource("3_dbbot")
+name = "Dog Bot"
+metadata/_custom_type_script = "uid://dkq4hoaydelmk"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbb01"]
+atlas = ExtResource("2_dbbot")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbb02"]
+atlas = ExtResource("2_dbbot")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dbbot"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbb01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbb02")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbbot"]
+size = Vector2(18, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_detect"]
+size = Vector2(32, 32)
+
+[node name="DogBot" type="CharacterBody2D" unique_id=1749583021 node_paths=PackedStringArray("interval_timer", "detection_area")]
+collision_layer = 2
+script = ExtResource("1_dbbot")
+speed = 50
+yank_strength = 400
+play_duration = 2.5
+wander_interval_min = 1.0
+wander_interval_max = 2.5
+interval_timer = NodePath("Timer")
+detection_area = NodePath("DetectionArea")
+item_data = SubResource("Resource_dbbot")
+metadata/_custom_type_script = "uid://c7ew8tmlyng7a"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1749583022]
+modulate = Color(1, 0.7, 0.3, 1)
+sprite_frames = SubResource("SpriteFrames_dbbot")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1749583023]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_dbbot")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1749583025]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1749583026]
+shape = SubResource("RectangleShape2D_detect")
+
+[node name="Timer" type="Timer" parent="." unique_id=1749583024]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_interval_timer_timeout"]

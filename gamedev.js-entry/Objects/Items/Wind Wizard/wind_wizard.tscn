@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bk6p5m2vjnfwr"]
+
+[ext_resource type="Script" uid="uid://bnbor8i084xyf" path="res://Objects/Items/Wind Wizard/wind_wizard.gd" id="1_wwzrd"]
+[ext_resource type="Texture2D" uid="uid://ceaec0p1csvku" path="res://Objects/Items/Kick Robot/kickBot.png" id="2_wwzrd"]
+[ext_resource type="Script" uid="uid://dkq4hoaydelmk" path="res://Objects/Items/item_data.gd" id="3_wwzrd"]
+
+[sub_resource type="Resource" id="Resource_wwzrd"]
+script = ExtResource("3_wwzrd")
+name = "Wind Wizard"
+metadata/_custom_type_script = "uid://dkq4hoaydelmk"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwz01"]
+atlas = ExtResource("2_wwzrd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwz02"]
+atlas = ExtResource("2_wwzrd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwzrd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwz01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwz02")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwzrd"]
+size = Vector2(14, 15)
+
+[node name="WindWizard" type="CharacterBody2D" unique_id=1638472910 node_paths=PackedStringArray("interval_timer")]
+collision_layer = 2
+script = ExtResource("1_wwzrd")
+speed = 30
+push_interval_min = 2.0
+push_interval_max = 3.5
+push_strength = 300
+interval_timer = NodePath("Timer")
+item_data = SubResource("Resource_wwzrd")
+metadata/_custom_type_script = "uid://bnbor8i084xyf"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1638472911]
+modulate = Color(0.4, 0.7, 1, 1)
+sprite_frames = SubResource("SpriteFrames_wwzrd")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1638472912]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_wwzrd")
+
+[node name="Timer" type="Timer" parent="." unique_id=1638472913]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_push_timer_timeout"]

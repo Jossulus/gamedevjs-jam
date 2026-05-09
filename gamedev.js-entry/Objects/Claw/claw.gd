@@ -137,7 +137,8 @@ func handle_idle() -> void:
 
 func handle_free() -> void:
 	velocity.x = get_claw_input_direction().x * speed
-	
+	velocity += push_velocity
+
 	if Input.is_action_just_pressed("claw_trigger") and not is_outside_left_ground():
 		change_input(INPUT.DOWN)
 
@@ -184,10 +185,9 @@ func grab(item : Node2D) -> void:
 	if !item: return
 	
 	grabbed_item = item
-	var update_position_function : Callable = func():
-		grabbed_item.reparent(self)
-		grabbed_item.position = claw_grab_position_marker.position
-	update_position_function.call_deferred()
+	grabbed_item.call_deferred("reparent", self)
+	var _item := grabbed_item
+	(func(): if is_instance_valid(_item): _item.position = claw_grab_position_marker.position).call_deferred()
 	grabbed_item.is_grabbed = true
 	velocity.y = 0
 	claw_sprite.play('close')
