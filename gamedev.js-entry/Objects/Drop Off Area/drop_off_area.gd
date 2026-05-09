@@ -8,12 +8,9 @@ var collected_item_data : Array[ItemData]
 signal collected(item : Item)
 
 
-func _init() -> void:
+func _ready() -> void:
 	ScoreKeeper.drop_off_area = self
 	collected.connect(ScoreKeeper.on_item_collected)
-
-
-func _ready() -> void:
 	body_entered.connect(collect)
 
 

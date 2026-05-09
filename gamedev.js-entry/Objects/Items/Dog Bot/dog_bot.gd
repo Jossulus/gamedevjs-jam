@@ -49,6 +49,7 @@ func _physics_process(_delta: float) -> void:
 		velocity.x = -1
 	if is_grabbed:
 		velocity = Vector2.ZERO
+	apply_push()
 	move_and_slide()
 
 

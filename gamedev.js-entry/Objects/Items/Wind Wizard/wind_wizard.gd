@@ -9,7 +9,7 @@ var state: STATE = STATE.IDLE
 @export var push_interval_min: float = 2.0
 @export var push_interval_max: float = 3.5
 @export var push_strength: int = 300
-@export var push_distance: int = 120
+@export var push_distance: int = 250
 
 @export var interval_timer: Timer
 
@@ -40,6 +40,7 @@ func _physics_process(_delta: float) -> void:
 		velocity.x = -1
 	if is_grabbed:
 		velocity = Vector2.ZERO
+	apply_push()
 	move_and_slide()
 
 

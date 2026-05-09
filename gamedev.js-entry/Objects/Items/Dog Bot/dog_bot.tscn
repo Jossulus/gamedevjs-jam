@@ -35,7 +35,7 @@ animations = [{
 size = Vector2(18, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_detect"]
-size = Vector2(32, 32)
+size = Vector2(80, 60)
 
 [node name="DogBot" type="CharacterBody2D" unique_id=1749583021 node_paths=PackedStringArray("interval_timer", "detection_area")]
 collision_layer = 2

@@ -146,8 +146,9 @@ func handle_free() -> void:
 func handle_down() -> void:
 	if position.y >= ground_position_marker.position.y:
 		change_input(INPUT.UP)
-	
+
 	velocity.x = get_claw_input_direction().x * speed
+	velocity += push_velocity
 	if is_outside_left_ground():
 		velocity.x = 1
 		position.x = left_ground_marker.position.x + 1

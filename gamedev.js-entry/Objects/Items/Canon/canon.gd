@@ -2,7 +2,7 @@ extends Item
 class_name Canon
 
 
-@onready var bullet_scene : PackedScene = preload("uid://db3s4pnf7748w")
+@onready var bullet_scene : PackedScene = preload("res://Objects/Items/Canon/Bullet/bullet.tscn")
 @onready var sfx_player : AudioStreamPlayer2D = $SFXPlayer
 
 
