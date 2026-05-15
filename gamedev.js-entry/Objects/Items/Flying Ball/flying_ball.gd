@@ -11,6 +11,11 @@ class_name FlyingBall
 @export var max_speed : int = 60
 
 
+const _FLASH_COLOR := Color(1.6, 0.6, 0.6)
+
+@onready var _sprite : AnimatedSprite2D = $AnimatedSprite2D
+
+var _push_cooldown : float = 0.0
 
 
 func _physics_process(delta: float) -> void:
@@ -25,9 +30,18 @@ func _physics_process(delta: float) -> void:
 		velocity += dir*full_thrust*delta
 		rotation = dir.angle() + PI/2
 	apply_gravity(0.2)
+	if _push_cooldown > 0.0:
+		_push_cooldown -= delta
 	if position.distance_to(Globals.claw.position) < push_range:
-		Globals.claw.push(position.direction_to(Globals.claw.position), int(velocity.length()))
-		velocity -= position.direction_to(Globals.claw.position)*velocity.length()
+		_sprite.modulate = _FLASH_COLOR
+		if _push_cooldown <= 0.0:
+			var claw_dir : Vector2 = position.direction_to(Globals.claw.position)
+			Globals.claw.push(claw_dir, int(velocity.length()), false)
+			velocity -= claw_dir * velocity.length()
+			if is_claw_above_alligator():
+				_push_cooldown = 7.0
+	else:
+		_sprite.modulate = Color.WHITE
 	apply_push()
 	if is_outside_left_edge():
 		velocity.x = 10

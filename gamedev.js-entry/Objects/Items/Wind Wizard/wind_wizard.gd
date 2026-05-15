@@ -48,6 +48,12 @@ func _on_push_timer_timeout() -> void:
 	if is_grabbed or abs(get_displacement_to_claw()) > push_distance:
 		_schedule_push()
 		return
+	if is_claw_above_alligator():
+		_schedule_push()
+		return
+	if is_claw_near_ground():
+		interval_timer.start(randf_range(push_interval_min, push_interval_max) * 1.8)
+		return
 	state = STATE.PUSHING
 	var push_dir: int = [-1, 1][randi() % 2]
 	$AnimatedSprite2D.flip_h = push_dir < 0

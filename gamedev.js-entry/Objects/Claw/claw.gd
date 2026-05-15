@@ -137,6 +137,7 @@ func handle_idle() -> void:
 
 func handle_free() -> void:
 	velocity.x = get_claw_input_direction().x * speed
+	velocity.y = 0
 	velocity += push_velocity
 
 	if Input.is_action_just_pressed("claw_trigger") and not is_outside_left_ground():
@@ -146,8 +147,13 @@ func handle_free() -> void:
 func handle_down() -> void:
 	if position.y >= ground_position_marker.position.y:
 		change_input(INPUT.UP)
+		return
+	if not Input.is_action_pressed("claw_trigger"):
+		change_input(INPUT.FREE)
+		return
 
 	velocity.x = get_claw_input_direction().x * speed
+	velocity.y = down_speed
 	velocity += push_velocity
 	if is_outside_left_ground():
 		velocity.x = 1
@@ -220,10 +226,11 @@ func return_claw() -> void:
 
 
 
-func push(direction : Vector2, strength : int) -> void:
+func push(direction : Vector2, strength : int, drop_held : bool = true) -> void:
 	push_velocity += direction.normalized() * strength
-	Globals.apply_cam_shake(strength)
-	drop()
+	if drop_held:
+		Globals.apply_cam_shake(strength)
+		drop()
 
 
 func add_item_to_push_area(body : Node2D) -> void:

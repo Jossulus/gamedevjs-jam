@@ -54,8 +54,14 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_claw_detected(area: Area2D) -> void:
+	if is_grabbed: return
 	if area != Globals.claw.get_node("ClawArea"): return
 	if state != STATE.WANDER: return
+	if is_claw_above_alligator(): return
+	if is_claw_near_ground():
+		await get_tree().create_timer(1.5).timeout
+		if is_grabbed or not is_inside_tree(): return
+		if not (Globals.claw.get_node("ClawArea") as Area2D).overlaps_area(detection_area): return
 	state = STATE.PLAYING
 	is_grabable = false
 	var yank_dir := Vector2(sign(Globals.claw.global_position.x - global_position.x), -0.4).normalized()

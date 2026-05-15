@@ -62,7 +62,17 @@ func get_displacement_to_claw() -> int:
 
 
 func get_height() -> int:
-	return int(Globals.right_ground_marker.position.y - position.y) 
+	return int(Globals.right_ground_marker.position.y - position.y)
+
+
+func is_claw_near_ground() -> bool:
+	if not Globals.claw: return false
+	return Globals.claw.position.y > 50
+
+
+func is_claw_above_alligator() -> bool:
+	if not Globals.claw: return false
+	return Globals.claw.position.y < 0
 
 
 func apply_push() -> void:

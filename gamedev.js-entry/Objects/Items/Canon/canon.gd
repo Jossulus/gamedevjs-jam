@@ -42,6 +42,7 @@ func _physics_process(_delta: float) -> void:
 
 func shoot_spread() -> void:
 	if is_grabbed: return
+	if is_claw_above_alligator(): return
 	if Globals.claw.position.y < claw_height_threshold: return
 	sfx_player.play()
 	

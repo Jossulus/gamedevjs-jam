@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 	apply_gravity()
 	apply_push()
 
-	if not is_on_floor():
+	if not is_on_floor() and not is_grabbed:
 		velocity.x = 0
 		move_and_slide()
 

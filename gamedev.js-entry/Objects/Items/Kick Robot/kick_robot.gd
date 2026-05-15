@@ -37,6 +37,10 @@ var push_velocity_length_cutoff : int = 5
 @export var push_claw_strength : int = 500
 
 
+var _release_cooldown : float = 0.0
+var _aggro_cooldown : float = 0.0
+
+
 func get_jump_height() -> int:
 	var clamped_jump_height : int = clampi(int(position.y - Globals.claw.position.y), 0,max_jump_height)
 	if clamped_jump_height < 5: return 5
@@ -45,46 +49,12 @@ func get_jump_height() -> int:
 
 
 func change_state(new_state : STATE) -> void:
-	match state:
-		STATE.WANDER:
-			pass
-		STATE.CHASE:
-			pass
-		STATE.JUMP:
-			pass
-		STATE.LAND:
-			pass
 	state = new_state
 	match state:
 		STATE.WANDER:
 			is_grabable = true
 			await get_tree().create_timer(1).timeout
-			new_wander_interval()
-		STATE.CHASE:
-			pass
-		STATE.JUMP:
-			#is_grabable = false
-			velocity.x = 0
-			$AnimatedSprite2D.play("awake")
-			await $AnimatedSprite2D.animation_finished
-			velocity.y = -sqrt((2 * get_gravity().y * jump_height)/get_physics_process_delta_time())
-		STATE.LAND:
-			$AnimatedSprite2D.play("kick")
-			push(position.direction_to(Globals.claw.position), push_strength)
-	match state:
-		STATE.WANDER:
-			pass
-		STATE.CHASE:
-			pass
-		STATE.JUMP:
-			pass
-		STATE.LAND:
-			pass
-	state = new_state
-	match state:
-		STATE.WANDER:
-			is_grabable = true
-			await get_tree().create_timer(1).timeout
+			if is_grabbed or state != STATE.WANDER: return
 			new_wander_interval()
 		STATE.CHASE:
 			pass
@@ -93,6 +63,7 @@ func change_state(new_state : STATE) -> void:
 			velocity.x = 0
 			$AnimatedSprite2D.play("awake")
 			await $AnimatedSprite2D.animation_finished
+			if is_grabbed or state != STATE.JUMP: return
 			velocity.y = -sqrt((2 * get_gravity().y * jump_height)/get_physics_process_delta_time())
 		STATE.LAND:
 			play_sfx(hit_sound)
@@ -107,6 +78,14 @@ func _physics_process(delta: float) -> void:
 		push_velocity = Vector2.ZERO
 		if state != STATE.WANDER:
 			state = STATE.WANDER
+		$AnimatedSprite2D.play("idle")
+		_release_cooldown = 0.8
+		move_and_slide()
+		return
+	if _release_cooldown > 0.0:
+		_release_cooldown -= delta
+		push_velocity = Vector2.ZERO
+		apply_gravity()
 		move_and_slide()
 		return
 	if dropped_into_box:
@@ -116,13 +95,15 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
+	if _aggro_cooldown > 0.0:
+		_aggro_cooldown -= delta
 	if get_direction_to_claw() < 0:
 		$AnimatedSprite2D.flip_h = false
 	elif get_direction_to_claw() > 0:
 		$AnimatedSprite2D.flip_h = true
 	match state:
 		STATE.WANDER:
-			if abs(get_displacement_to_claw()) <= aggro_distance:
+			if _aggro_cooldown <= 0.0 and abs(get_displacement_to_claw()) <= aggro_distance:
 				change_state(STATE.CHASE)
 			if is_outside_left_edge():
 				direction = 1
@@ -145,6 +126,7 @@ func _physics_process(delta: float) -> void:
 				change_state(STATE.LAND)
 		STATE.LAND:
 			if is_on_floor():
+				_aggro_cooldown = 7.0 if is_claw_above_alligator() else 0.5
 				change_state(STATE.WANDER)
 			else:
 				if position.distance_to(Globals.claw.position) < push_claw_distance:
